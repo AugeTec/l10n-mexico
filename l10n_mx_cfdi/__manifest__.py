@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "base_cfdi",
+    'name': "l10n_mx_cfdi",
 
     'summary': """Base module for CFDI compliance in Mexico""",
 
@@ -19,7 +19,7 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account'],
+    'depends': ['base', 'spec_driven_model', 'account'],
 
     # always loaded
     'data': [

@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 
 class CFDIProductAndServiceCode(models.Model):
-    _name = 'base_cfdi.cfdi_product_and_service_code'
+    _name = 'l10n_mx_cfdi.cfdi_product_and_service_code'
     _description = 'CFDI Product and Service Code (c_ClaveProdServ)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)

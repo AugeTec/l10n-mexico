@@ -1,9 +1,9 @@
 from odoo import api, fields, models
 
 
-class CFDIReportingPeriod(models.Model):
-    _name = 'base_cfdi.cfdi_reporting_period'
-    _description = 'CFDI Reporting Period (c_Meses)'
+class CFDIExportType(models.Model):
+    _name = 'l10n_mx_cfdi.cfdi_export_type'
+    _description = 'CFDI Export Type (c_Exportacion)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
     code = fields.Char('Code', required=True)

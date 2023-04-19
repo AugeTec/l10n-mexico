@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 
 class CfdiMeasurementUnit(models.Model):
-    _name = 'base_cfdi.cfdi_measurement_unit'
+    _name = 'l10n_mx_cfdi.cfdi_measurement_unit'
     _description = 'CFDI Measurement Unit (c_ClaveUnidad)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)

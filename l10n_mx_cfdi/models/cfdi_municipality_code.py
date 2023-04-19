@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 
 class CFDIMunicipalityCode(models.Model):
-    _name = 'base_cfdi.cfdi_municipality_code'
+    _name = 'l10n_mx_cfdi.cfdi_municipality_code'
     _description = 'CFDI Municipality Code (c_Municipio)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)

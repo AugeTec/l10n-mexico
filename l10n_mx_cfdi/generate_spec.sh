@@ -36,7 +36,8 @@ mv /tmp/cfd_schemas/catalogos/catCFDI.xsd /tmp/cfd_schemas/catalogos/catCFDI.xsd
 sed '/<xs:enumeration value=.*/d' /tmp/cfd_schemas/catalogos/catCFDI.xsd.bak >/tmp/cfd_schemas/catalogos/catCFDI.xsd
 
 # generate the spec file
-export XSDATA_SCHEMA="cfdi"
+export XSDATA_SCHEMA="l10n_mx_cfdi"
 export XSDATA_VERSION="4_0"
 export XSDATA_LANG=spanish
+xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd -p models.spec.lib
 xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd -p models.spec.mixin --output=odoo

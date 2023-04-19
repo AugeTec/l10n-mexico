@@ -1,9 +1,9 @@
 from odoo import api, fields, models
 
 
-class CFDIType(models.Model):
-    _name = 'base_cfdi.cfdi_type'
-    _description = 'CFDI Type (c_TipoDeComprobante)'
+class CFDIFrequency(models.Model):
+    _name = 'l10n_mx_cfdi.cfdi_frequency'
+    _description = 'CFDI Frequency (c_Periodicidad)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
     code = fields.Char('Code', required=True)

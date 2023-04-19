@@ -1,16 +1,24 @@
 from odoo import api, fields, models
 
 
-class CFDITaxRegime(models.Model):
-    _name = 'base_cfdi.cfdi_tax_regime'
-    _description = 'CFDI Tax Regime (c_RegimenFiscal)'
+class CFDILocalityCode(models.Model):
+    _name = 'l10n_mx_cfdi.cfdi_locality_code'
+    _description = 'CFDI Locality Code (c_Localidad)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
     code = fields.Char('Code', required=True)
     description = fields.Char('Description', required=True)
 
-    applicable_to_natural_person = fields.Boolean('Applicable to Natural Person')
-    applicable_to_legal_entity = fields.Boolean('Applicable to Legal Entity')
+    state_id = fields.Many2one(
+        'res.country.state',
+        'State',
+        required=True,
+    )
+
+    border_zone_incentive = fields.Integer(
+        'Border Zone Incentive',
+        help='Border Zone Incentive',
+    )
 
     @api.depends('code', 'description')
     def _compute_name(self):

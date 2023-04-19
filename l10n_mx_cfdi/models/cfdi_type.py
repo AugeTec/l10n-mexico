@@ -1,9 +1,9 @@
 from odoo import api, fields, models
 
 
-class CFDIPaymentMethod(models.Model):
-    _name = 'base_cfdi.cfdi_payment_method'
-    _description = 'CFDI Payment Method (c_MetodoPago)'
+class CFDIType(models.Model):
+    _name = 'l10n_mx_cfdi.cfdi_type'
+    _description = 'CFDI Type (c_TipoDeComprobante)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
     code = fields.Char('Code', required=True)

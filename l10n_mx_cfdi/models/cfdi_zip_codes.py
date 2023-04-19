@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 
 class CFDIZipCodes(models.Model):
-    _name = 'base_cfdi.cfdi_zip_codes'
+    _name = 'l10n_mx_cfdi.cfdi_zip_codes'
     _description = 'CFDI Zip Codes (c_CodigoPostal)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
@@ -10,9 +10,9 @@ class CFDIZipCodes(models.Model):
     description = fields.Char('Description', required=True)
 
     state_id = fields.Many2one('res.country.state', 'State', required=True)
-    municipality_id = fields.Many2one('base_cfdi.cfdi_municipality_code',
+    municipality_id = fields.Many2one('l10n_mx_cfdi.cfdi_municipality_code',
                                       'Municipality')
-    locality_id = fields.Many2one('base_cfdi.cfdi_locality_code', 'Locality')
+    locality_id = fields.Many2one('l10n_mx_cfdi.cfdi_locality_code', 'Locality')
 
     @api.depends('code', 'description')
     def _compute_name(self):

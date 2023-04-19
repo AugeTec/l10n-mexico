@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 
 class CfdiTaxableCode(models.Model):
-    _name = 'base_cfdi.cfdi_taxable_code'
+    _name = 'l10n_mx_cfdi.cfdi_taxable_code'
     _description = 'CFDI Taxable Code (c_ObjetoImp)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)

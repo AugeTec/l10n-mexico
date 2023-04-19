@@ -1,9 +1,9 @@
 from odoo import api, fields, models
 
 
-class CFDIFrequency(models.Model):
-    _name = 'base_cfdi.cfdi_frequency'
-    _description = 'CFDI Frequency (c_Periodicidad)'
+class CFDIReportingPeriod(models.Model):
+    _name = 'l10n_mx_cfdi.cfdi_reporting_period'
+    _description = 'CFDI Reporting Period (c_Meses)'
 
     name = fields.Char('Name', compute='_compute_name', store=True)
     code = fields.Char('Code', required=True)
