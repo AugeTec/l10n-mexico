@@ -19,7 +19,7 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'spec_driven_model', 'account'],
+    'depends': ['base', 'l10n_mx_cfdi_spec', 'spec_driven_model', 'account'],
 
     # always loaded
     'data': [

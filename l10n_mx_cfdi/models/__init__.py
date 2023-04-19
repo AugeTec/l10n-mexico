@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from .spec import mixin
 from . import account_tax
 from . import cfdi_document_4_0
 from . import cfdi_district_code

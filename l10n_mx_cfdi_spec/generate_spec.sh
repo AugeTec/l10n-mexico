@@ -39,5 +39,8 @@ sed '/<xs:enumeration value=.*/d' /tmp/cfd_schemas/catalogos/catCFDI.xsd.bak >/t
 export XSDATA_SCHEMA="l10n_mx_cfdi"
 export XSDATA_VERSION="4_0"
 export XSDATA_LANG=spanish
-xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd -p models.spec.lib
-xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd -p models.spec.mixin --output=odoo
+xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd --compound-fields -p models.lib
+xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd --compound-fields -p models.mixin --output=odoo
+
+# patch "models.lib.cfdv40" to ".cfdv40" in the generated __init__.py file
+sed -i 's/models.lib.cfdv40/.cfdv40/g' models/lib/__init__.py
