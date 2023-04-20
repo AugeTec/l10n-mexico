@@ -19,11 +19,14 @@
     'version': '15.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'l10n_mx_cfdi_spec', 'spec_driven_model', 'account'],
+    'depends': ['base', 'l10n_mx_cfdi_spec', 'account'],
 
     # always loaded
     'data': [
+        'security/access_groups.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
     ],
+
+    'post_init_hook': 'post_init_hook',
 }
