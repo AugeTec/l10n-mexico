@@ -1,1 +1,1 @@
-from . import cfdv40
+from . import comprobante

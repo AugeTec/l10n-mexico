@@ -23,24 +23,34 @@ if [ ! -f "generate_spec.sh" ]; then
 fi
 
 CFD_4_0_SCHEMA_URL="http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+SCHEMAS_DIR="$PWD/data/schemas"
 
 # download xsd files from the SAT if they don't exist
-if [ ! -f "/tmp/cfd_schemas/4/cfdv40.xsd" ]; then
-  xsdata download -o /tmp/cfd_schemas $CFD_4_0_SCHEMA_URL
+if [ ! -f "$SCHEMAS_DIR/4/cfdv40.xsd" ]; then
+  xsdata download -o $SCHEMAS_DIR $CFD_4_0_SCHEMA_URL
 fi
 
-# remove enum values elements `<xs:enumeration value=.*/>` from /tmp/cfd_schemas/catalogos/catCFDI.xsd
-# because they cause problems with xsdata
+# remove enum values elements `<xs:enumeration value=.*/>` from $SCHEMAS_DIR/catalogos/catCFDI.xsd
+# because they just make the spec file bigger and they will be stored in the database anyway
 
-mv /tmp/cfd_schemas/catalogos/catCFDI.xsd /tmp/cfd_schemas/catalogos/catCFDI.xsd.bak
-sed '/<xs:enumeration value=.*/d' /tmp/cfd_schemas/catalogos/catCFDI.xsd.bak >/tmp/cfd_schemas/catalogos/catCFDI.xsd
+mv "$SCHEMAS_DIR/catalogos/catCFDI.xsd" "$SCHEMAS_DIR/catalogos/catCFDI.xsd.bak"
+sed '/<xs:enumeration value=.*/d' "$SCHEMAS_DIR/catalogos/catCFDI.xsd.bak" >"$SCHEMAS_DIR/catalogos/catCFDI.xsd"
+rm "$SCHEMAS_DIR/catalogos/catCFDI.xsd.bak"
 
 # generate the spec file
 export XSDATA_SCHEMA="l10n_mx_cfdi"
 export XSDATA_VERSION="4_0"
 export XSDATA_LANG=spanish
-xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd --compound-fields -p models.lib
-xsdata generate /tmp/cfd_schemas/4/cfdv40.xsd --compound-fields -p models.mixin --output=odoo
+xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -p models.lib
+xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -p models.mixin --output=odoo
 
-# patch "models.lib.cfdv40" to ".cfdv40" in the generated __init__.py file
-sed -i 's/models.lib.cfdv40/.cfdv40/g' models/lib/__init__.py
+## Add schema location and namespace map to package lib/__init__.py
+cat <<EOF >>models/lib/__init__.py
+
+CFDI_4_0_SCHEMA_LOCATION = "http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+
+CFDI_4_0_NAMESPACES = {
+    'cfdi': 'http://www.sat.gob.mx/cfd/4',
+    'xsi': 'http://www.w3.org/2001/XMLSchema-instance'
+}
+EOF
