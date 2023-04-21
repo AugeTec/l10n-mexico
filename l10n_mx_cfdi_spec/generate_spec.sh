@@ -41,8 +41,8 @@ rm "$SCHEMAS_DIR/catalogos/catCFDI.xsd.bak"
 export XSDATA_SCHEMA="l10n_mx_cfdi"
 export XSDATA_VERSION="4_0"
 export XSDATA_LANG=spanish
-xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -p models.lib
-xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -p models.mixin --output=odoo
+xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -c './xsdata.xml' -p models.lib
+xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -c './xsdata.xml' -p models.mixin --output=odoo
 
 ## Add schema location and namespace map to package lib/__init__.py
 cat <<EOF >>models/lib/__init__.py
@@ -54,3 +54,4 @@ CFDI_4_0_NAMESPACES = {
     'xsi': 'http://www.w3.org/2001/XMLSchema-instance'
 }
 EOF
+

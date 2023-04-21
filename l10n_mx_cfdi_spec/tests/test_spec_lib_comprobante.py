@@ -12,7 +12,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from odoo.tools import float_compare
 
 
-@tagged('-standard', 'l10n_mx_cfdi')
+@tagged('-standard', 'l10n_mx_cfdi_spec')
 class TestComprobanteClass(TransactionCase):
     """
     Test importing and exporting CFDI XML files into Comprobante class

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Config xmlns="http://pypi.org/project/xsdata" version="22.7">
     <Output maxLineLength="79">
-        <Package>models.lib</Package>
-        <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="false" kwOnly="false">dataclasses</Format>
         <Structure>clusters</Structure>
         <DocstringStyle>reStructuredText</DocstringStyle>
         <RelativeImports>true</RelativeImports>
@@ -12,7 +10,7 @@
     </Output>
     <Conventions>
         <ClassName case="pascalCase" safePrefix="type"/>
-        <FieldName case="snakeCase" safePrefix="value"/>
+        <FieldName case="snakeCase" safePrefix="l10n_mx_cfdi4_0_SAFE_NAME"/>
         <ConstantName case="screamingSnakeCase" safePrefix="value"/>
         <ModuleName case="snakeCase" safePrefix="mod"/>
         <PackageName case="snakeCase" safePrefix="pkg"/>
@@ -49,7 +47,7 @@
         <Substitution type="field" search="^KeyInfo$" replace="keyInfo"/>
 
         <!-- cfdi  -->
-
+        <Substitution type="field" search="Año" replace="Anio"/>
 
     </Substitutions>
 </Config>

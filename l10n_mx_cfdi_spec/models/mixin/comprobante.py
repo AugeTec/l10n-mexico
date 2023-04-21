@@ -15,7 +15,7 @@ class Comprobante(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante"
 
-    l10n_mx_cfdi4_0_InformacionGlobal = fields.Many2one(
+    l10n_mx_cfdi4_0_informacion_global = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.informacionglobal",
         string="Nodo condicional para precisar",
         help=(
@@ -24,9 +24,9 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_CfdiRelacionados = fields.One2many(
+    l10n_mx_cfdi4_0_cfdi_relacionados = fields.One2many(
         "l10n_mx_cfdi.4_0.cfdirelacionados",
-        "l10n_mx_cfdi4_0_CfdiRelacionados_Comprobante_id",
+        "l10n_mx_cfdi4_0_cfdi_relacionados_comprobante_id",
         string="Nodo opcional para precisar",
         help=(
             "Nodo opcional para precisar la información de los comprobantes "
@@ -34,7 +34,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Emisor = fields.Many2one(
+    l10n_mx_cfdi4_0_emisor = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.emisor",
         string="Nodo requerido para expresar",
         xsd_required=True,
@@ -44,7 +44,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Receptor = fields.Many2one(
+    l10n_mx_cfdi4_0_receptor = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.receptor",
         string="Nodo requerido para precisar",
         xsd_required=True,
@@ -54,7 +54,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Conceptos = fields.Many2one(
+    l10n_mx_cfdi4_0_conceptos = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.conceptos",
         string="Nodo requerido para listar",
         xsd_required=True,
@@ -63,7 +63,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Impuestos = fields.Many2one(
+    l10n_mx_cfdi4_0_impuestos = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.impuestos",
         string="Nodo condicional para expresar",
         help=(
@@ -71,7 +71,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Complemento = fields.Many2one(
+    l10n_mx_cfdi4_0_complemento = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.complemento",
         string="Nodo opcional donde se incluye",
         help=(
@@ -82,7 +82,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Addenda = fields.Many2one(
+    l10n_mx_cfdi4_0_addenda = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.addenda",
         string="Nodo opcional para recibir",
         help=(
@@ -92,7 +92,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Version = fields.Char(
+    l10n_mx_cfdi4_0_version = fields.Char(
         string="Atributo requerido con valor prefijado",
         xsd_required=True,
         help=(
@@ -102,7 +102,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Serie = fields.Char(
+    l10n_mx_cfdi4_0_serie = fields.Char(
         string="Atributo opcional para precisar la serie",
         help=(
             "Atributo opcional para precisar la serie para control interno del"
@@ -110,7 +110,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Folio = fields.Char(
+    l10n_mx_cfdi4_0_folio = fields.Char(
         string="Atributo opcional para control interno",
         help=(
             "Atributo opcional para control interno del contribuyente que "
@@ -119,7 +119,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Fecha = fields.Char(
+    l10n_mx_cfdi4_0_fecha = fields.Char(
         string="Atributo requerido para la expresión",
         xsd_required=True,
         xsd_type="tdCFDI:t_FechaH",
@@ -131,7 +131,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Sello = fields.Char(
+    l10n_mx_cfdi4_0_sello = fields.Char(
         string="Atributo requerido para contener",
         xsd_required=True,
         help=(
@@ -142,7 +142,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_FormaPago = fields.Char(
+    l10n_mx_cfdi4_0_forma_pago = fields.Char(
         string="Atributo condicional para expresar",
         xsd_type="catCFDI:c_FormaPago",
         help=(
@@ -151,7 +151,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_NoCertificado = fields.Char(
+    l10n_mx_cfdi4_0_no_certificado = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         help=(
@@ -162,7 +162,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Certificado = fields.Char(
+    l10n_mx_cfdi4_0_certificado = fields.Char(
         string="Atributo requerido que sirve",
         xsd_required=True,
         help=(
@@ -172,7 +172,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_CondicionesDePago = fields.Char(
+    l10n_mx_cfdi4_0_condiciones_de_pago = fields.Char(
         string="CondicionesDePago",
         help=(
             "Atributo condicional para expresar las condiciones comerciales "
@@ -182,7 +182,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_SubTotal = fields.Char(
+    l10n_mx_cfdi4_0_sub_total = fields.Char(
         string="Atributo requerido para representar",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -193,7 +193,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Descuento = fields.Char(
+    l10n_mx_cfdi4_0_descuento = fields.Char(
         string="Atributo condicional para representar",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -204,7 +204,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Moneda = fields.Char(
+    l10n_mx_cfdi4_0_moneda = fields.Char(
         string="Atributo requerido para identificar",
         xsd_required=True,
         xsd_type="catCFDI:c_Moneda",
@@ -215,7 +215,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoCambio = fields.Float(
+    l10n_mx_cfdi4_0_tipo_cambio = fields.Float(
         string="TipoCambio",
         help=(
             "Atributo condicional para representar el tipo de cambio FIX "
@@ -231,7 +231,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Total = fields.Char(
+    l10n_mx_cfdi4_0_total = fields.Char(
         string="Total",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -250,7 +250,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoDeComprobante = fields.Char(
+    l10n_mx_cfdi4_0_tipo_de_comprobante = fields.Char(
         string="TipoDeComprobante",
         xsd_required=True,
         xsd_type="catCFDI:c_TipoDeComprobante",
@@ -260,7 +260,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Exportacion = fields.Char(
+    l10n_mx_cfdi4_0_exportacion = fields.Char(
         string="Atributo requerido para expresar si",
         xsd_required=True,
         xsd_type="catCFDI:c_Exportacion",
@@ -270,7 +270,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_MetodoPago = fields.Char(
+    l10n_mx_cfdi4_0_metodo_pago = fields.Char(
         string="Atributo condicional para precisar",
         xsd_type="catCFDI:c_MetodoPago",
         help=(
@@ -280,7 +280,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_LugarExpedicion = fields.Char(
+    l10n_mx_cfdi4_0_lugar_expedicion = fields.Char(
         string="Atributo requerido para incorporar",
         xsd_required=True,
         xsd_type="catCFDI:c_CodigoPostal",
@@ -291,7 +291,7 @@ class Comprobante(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Confirmacion = fields.Char(
+    l10n_mx_cfdi4_0_confirmacion = fields.Char(
         string="Atributo condicional para registrar",
         help=(
             "Atributo condicional para registrar la clave de confirmación que "
@@ -312,7 +312,7 @@ class InformacionGlobal(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.InformacionGlobal"
 
-    l10n_mx_cfdi4_0_Periodicidad = fields.Char(
+    l10n_mx_cfdi4_0_periodicidad = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         xsd_type="catCFDI:c_Periodicidad",
@@ -322,7 +322,7 @@ class InformacionGlobal(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Meses = fields.Char(
+    l10n_mx_cfdi4_0_meses = fields.Char(
         string="Atributo requerido para expresar (Meses)",
         xsd_required=True,
         xsd_type="catCFDI:c_Meses",
@@ -342,14 +342,14 @@ class CfdiRelacionados(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.CfdiRelacionados"
 
-    l10n_mx_cfdi4_0_CfdiRelacionados_Comprobante_id = fields.Many2one(
+    l10n_mx_cfdi4_0_cfdi_relacionados_comprobante_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.comprobante",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_CfdiRelacionado = fields.One2many(
+    l10n_mx_cfdi4_0_cfdi_relacionado = fields.One2many(
         "l10n_mx_cfdi.4_0.cfdirelacionado",
-        "l10n_mx_cfdi4_0_CfdiRelacionado_CfdiRelacionados_id",
+        "l10n_mx_cfdi4_0_cfdi_relacionado_cfdi_relacionados_id",
         string="Nodo requerido para precisar",
         help=(
             "Nodo requerido para precisar la información de los comprobantes "
@@ -357,7 +357,7 @@ class CfdiRelacionados(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoRelacion = fields.Char(
+    l10n_mx_cfdi4_0_tipo_relacion = fields.Char(
         string="Atributo requerido para indicar",
         xsd_required=True,
         xsd_type="catCFDI:c_TipoRelacion",
@@ -377,12 +377,12 @@ class CfdiRelacionado(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.CfdiRelacionados.CfdiRelacionado"
 
-    l10n_mx_cfdi4_0_CfdiRelacionado_CfdiRelacionados_id = fields.Many2one(
+    l10n_mx_cfdi4_0_cfdi_relacionado_cfdi_relacionados_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.cfdirelacionados",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_UUID = fields.Char(
+    l10n_mx_cfdi4_0_uuid = fields.Char(
         string="Atributo requerido para registrar",
         xsd_required=True,
         help=(
@@ -407,7 +407,7 @@ class Emisor(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Emisor"
 
-    l10n_mx_cfdi4_0_Rfc = fields.Char(
+    l10n_mx_cfdi4_0_rfc = fields.Char(
         string="Atributo requerido para registrar",
         xsd_required=True,
         xsd_type="tdCFDI:t_RFC",
@@ -418,7 +418,7 @@ class Emisor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Nombre = fields.Char(
+    l10n_mx_cfdi4_0_nombre = fields.Char(
         string="Nombre",
         xsd_required=True,
         help=(
@@ -428,7 +428,7 @@ class Emisor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_RegimenFiscal = fields.Char(
+    l10n_mx_cfdi4_0_regimen_fiscal = fields.Char(
         string="Atributo requerido para incorporar",
         xsd_required=True,
         xsd_type="catCFDI:c_RegimenFiscal",
@@ -439,7 +439,7 @@ class Emisor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_FacAtrAdquirente = fields.Char(
+    l10n_mx_cfdi4_0_fac_atr_adquirente = fields.Char(
         string="Atributo condicional para expresar",
         help=(
             "Atributo condicional para expresar el número de operación "
@@ -458,7 +458,7 @@ class Receptor(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Receptor"
 
-    l10n_mx_cfdi4_0_Rfc = fields.Char(
+    l10n_mx_cfdi4_0_rfc = fields.Char(
         string="Atributo requerido para registrar",
         xsd_required=True,
         xsd_type="tdCFDI:t_RFC",
@@ -469,7 +469,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Nombre = fields.Char(
+    l10n_mx_cfdi4_0_nombre = fields.Char(
         string="Nombre",
         xsd_required=True,
         help=(
@@ -480,7 +480,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_DomicilioFiscalReceptor = fields.Char(
+    l10n_mx_cfdi4_0_domicilio_fiscal_receptor = fields.Char(
         string="DomicilioFiscalReceptor",
         xsd_required=True,
         help=(
@@ -489,7 +489,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ResidenciaFiscal = fields.Char(
+    l10n_mx_cfdi4_0_residencia_fiscal = fields.Char(
         string="Atributo condicional para registrar",
         xsd_type="catCFDI:c_Pais",
         help=(
@@ -502,7 +502,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_NumRegIdTrib = fields.Char(
+    l10n_mx_cfdi4_0_num_reg_id_trib = fields.Char(
         string="Atributo condicional para expresar",
         help=(
             "Atributo condicional para expresar el número de registro de "
@@ -512,7 +512,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_RegimenFiscalReceptor = fields.Char(
+    l10n_mx_cfdi4_0_regimen_fiscal_receptor = fields.Char(
         string="Atributo requerido para incorporar",
         xsd_required=True,
         xsd_type="catCFDI:c_RegimenFiscal",
@@ -523,7 +523,7 @@ class Receptor(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_UsoCFDI = fields.Char(
+    l10n_mx_cfdi4_0_uso_cfdi = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         xsd_type="catCFDI:c_UsoCFDI",
@@ -543,9 +543,9 @@ class Conceptos(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos"
 
-    l10n_mx_cfdi4_0_Concepto = fields.One2many(
+    l10n_mx_cfdi4_0_concepto = fields.One2many(
         "l10n_mx_cfdi.4_0.concepto",
-        "l10n_mx_cfdi4_0_Concepto_Conceptos_id",
+        "l10n_mx_cfdi4_0_concepto_conceptos_id",
         string="Nodo requerido para registrar",
         help=(
             "Nodo requerido para registrar la información detallada de un bien"
@@ -563,10 +563,10 @@ class Concepto(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto"
 
-    l10n_mx_cfdi4_0_Concepto_Conceptos_id = fields.Many2one(
+    l10n_mx_cfdi4_0_concepto_conceptos_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.conceptos", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_Impuestos = fields.Many2one(
+    l10n_mx_cfdi4_0_impuestos = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.impuestos",
         string="Nodo condicional para capturar",
         help=(
@@ -575,7 +575,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ACuentaTerceros = fields.Many2one(
+    l10n_mx_cfdi4_0_acuenta_terceros = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.acuentaterceros",
         string="Nodo opcional para registrar información",
         help=(
@@ -584,9 +584,9 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_InformacionAduanera = fields.One2many(
+    l10n_mx_cfdi4_0_informacion_aduanera = fields.One2many(
         "l10n_mx_cfdi.4_0.informacionaduanera",
-        "l10n_mx_cfdi4_0_InformacionAduanera_Concepto_id",
+        "l10n_mx_cfdi4_0_informacion_aduanera_concepto_id",
         string="Nodo opcional para introducir",
         help=(
             "Nodo opcional para introducir la información aduanera aplicable "
@@ -596,9 +596,9 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_CuentaPredial = fields.One2many(
+    l10n_mx_cfdi4_0_cuenta_predial = fields.One2many(
         "l10n_mx_cfdi.4_0.cuentapredial",
-        "l10n_mx_cfdi4_0_CuentaPredial_Concepto_id",
+        "l10n_mx_cfdi4_0_cuenta_predial_concepto_id",
         string="Nodo opcional para asentar el número",
         help=(
             "Nodo opcional para asentar el número de cuenta predial con el que"
@@ -609,7 +609,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ComplementoConcepto = fields.Many2one(
+    l10n_mx_cfdi4_0_complemento_concepto = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.complementoconcepto",
         string="Nodo opcional donde se incluyen",
         help=(
@@ -619,9 +619,9 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Parte = fields.One2many(
+    l10n_mx_cfdi4_0_parte = fields.One2many(
         "l10n_mx_cfdi.4_0.parte",
-        "l10n_mx_cfdi4_0_Parte_Concepto_id",
+        "l10n_mx_cfdi4_0_parte_concepto_id",
         string="Nodo opcional para expresar las partes",
         help=(
             "Nodo opcional para expresar las partes o componentes que integran"
@@ -630,7 +630,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ClaveProdServ = fields.Char(
+    l10n_mx_cfdi4_0_clave_prod_serv = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         xsd_type="catCFDI:c_ClaveProdServ",
@@ -643,7 +643,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_NoIdentificacion = fields.Char(
+    l10n_mx_cfdi4_0_no_identificacion = fields.Char(
         string="Atributo opcional para expresar",
         help=(
             "Atributo opcional para expresar el número de parte, identificador"
@@ -654,7 +654,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Cantidad = fields.Float(
+    l10n_mx_cfdi4_0_cantidad = fields.Float(
         string="Atributo requerido para precisar",
         xsd_required=True,
         help=(
@@ -663,7 +663,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ClaveUnidad = fields.Char(
+    l10n_mx_cfdi4_0_clave_unidad = fields.Char(
         string="ClaveUnidad",
         xsd_required=True,
         xsd_type="catCFDI:c_ClaveUnidad",
@@ -675,7 +675,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Unidad = fields.Char(
+    l10n_mx_cfdi4_0_unidad = fields.Char(
         string="Atributo opcional para precisar",
         help=(
             "Atributo opcional para precisar la unidad de medida propia de la "
@@ -685,7 +685,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Descripcion = fields.Char(
+    l10n_mx_cfdi4_0_descripcion = fields.Char(
         string="Descripcion",
         xsd_required=True,
         help=(
@@ -694,7 +694,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ValorUnitario = fields.Char(
+    l10n_mx_cfdi4_0_valor_unitario = fields.Char(
         string="ValorUnitario",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -704,7 +704,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Importe",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -716,7 +716,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Descuento = fields.Char(
+    l10n_mx_cfdi4_0_descuento = fields.Char(
         string="Atributo opcional para representar",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -725,7 +725,7 @@ class Concepto(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ObjetoImp = fields.Char(
+    l10n_mx_cfdi4_0_objeto_imp = fields.Char(
         string="Atributo requerido para expresar si",
         xsd_required=True,
         xsd_type="catCFDI:c_ObjetoImp",
@@ -745,7 +745,7 @@ class Impuestos(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos"
 
-    l10n_mx_cfdi4_0_Traslados = fields.Many2one(
+    l10n_mx_cfdi4_0_traslados = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.traslados",
         string="Nodo opcional para asentar",
         help=(
@@ -754,7 +754,7 @@ class Impuestos(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Retenciones = fields.Many2one(
+    l10n_mx_cfdi4_0_retenciones = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         string="Nodo opcional para asentar (Retenciones)",
         help=(
@@ -773,9 +773,9 @@ class Traslados(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados"
 
-    l10n_mx_cfdi4_0_Traslado = fields.One2many(
+    l10n_mx_cfdi4_0_traslado = fields.One2many(
         "l10n_mx_cfdi.4_0.traslado",
-        "l10n_mx_cfdi4_0_Traslado_Traslados_id",
+        "l10n_mx_cfdi4_0_traslado_traslados_id",
         string="Nodo requerido para asentar",
         help=(
             "Nodo requerido para asentar la información detallada de un "
@@ -793,10 +793,10 @@ class Traslado(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados.Traslado"
 
-    l10n_mx_cfdi4_0_Traslado_Traslados_id = fields.Many2one(
+    l10n_mx_cfdi4_0_traslado_traslados_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.traslados", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_Base = fields.Float(
+    l10n_mx_cfdi4_0_base = fields.Float(
         string="Atributo requerido para señalar",
         xsd_required=True,
         help=(
@@ -807,7 +807,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Impuesto = fields.Char(
+    l10n_mx_cfdi4_0_impuesto = fields.Char(
         string="Atributo requerido para señalar la clave",
         xsd_required=True,
         xsd_type="catCFDI:c_Impuesto",
@@ -817,7 +817,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoFactor = fields.Char(
+    l10n_mx_cfdi4_0_tipo_factor = fields.Char(
         string="TipoFactor",
         xsd_required=True,
         xsd_type="catCFDI:c_TipoFactor",
@@ -827,7 +827,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TasaOCuota = fields.Float(
+    l10n_mx_cfdi4_0_tasa_ocuota = fields.Float(
         string="Atributo condicional para señalar",
         help=(
             "Atributo condicional para señalar el valor de la tasa o cuota del"
@@ -837,7 +837,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Importe",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -857,9 +857,9 @@ class Retenciones(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones"
 
-    l10n_mx_cfdi4_0_Retencion = fields.One2many(
+    l10n_mx_cfdi4_0_retencion = fields.One2many(
         "l10n_mx_cfdi.4_0.retencion",
-        "l10n_mx_cfdi4_0_Retencion_Retenciones_id",
+        "l10n_mx_cfdi4_0_retencion_retenciones_id",
         string="Nodo requerido para asentar",
         help=(
             "Nodo requerido para asentar la información detallada de una "
@@ -877,17 +877,17 @@ class Retencion(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones.Retencion"
 
-    l10n_mx_cfdi4_0_Retencion_Retenciones_id = fields.Many2one(
+    l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_Retencion_Retenciones_id = fields.Many2one(
+    l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_Base = fields.Float(
+    l10n_mx_cfdi4_0_base = fields.Float(
         string="Atributo requerido para señalar",
         xsd_required=True,
         help=(
@@ -898,7 +898,7 @@ class Retencion(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Impuesto = fields.Char(
+    l10n_mx_cfdi4_0_impuesto = fields.Char(
         string="Atributo requerido para señalar la clave",
         xsd_required=True,
         xsd_type="catCFDI:c_Impuesto",
@@ -908,7 +908,7 @@ class Retencion(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoFactor = fields.Char(
+    l10n_mx_cfdi4_0_tipo_factor = fields.Char(
         string="TipoFactor",
         xsd_required=True,
         xsd_type="catCFDI:c_TipoFactor",
@@ -918,7 +918,7 @@ class Retencion(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TasaOCuota = fields.Float(
+    l10n_mx_cfdi4_0_tasa_ocuota = fields.Float(
         string="Atributo requerido para señalar la tasa",
         xsd_required=True,
         help=(
@@ -927,7 +927,7 @@ class Retencion(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Importe",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -947,7 +947,7 @@ class AcuentaTerceros(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.AcuentaTerceros"
 
-    l10n_mx_cfdi4_0_RfcACuentaTerceros = fields.Char(
+    l10n_mx_cfdi4_0_rfc_acuenta_terceros = fields.Char(
         string="Atributo requerido para registrar",
         xsd_required=True,
         xsd_type="tdCFDI:t_RFC",
@@ -958,7 +958,7 @@ class AcuentaTerceros(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_NombreACuentaTerceros = fields.Char(
+    l10n_mx_cfdi4_0_nombre_acuenta_terceros = fields.Char(
         string="NombreACuentaTerceros",
         xsd_required=True,
         help=(
@@ -968,7 +968,7 @@ class AcuentaTerceros(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_RegimenFiscalACuentaTerceros = fields.Char(
+    l10n_mx_cfdi4_0_regimen_fiscal_acuenta_terceros = fields.Char(
         string="Atributo requerido para incorporar",
         xsd_required=True,
         xsd_type="catCFDI:c_RegimenFiscal",
@@ -978,7 +978,7 @@ class AcuentaTerceros(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_DomicilioFiscalACuentaTerceros = fields.Char(
+    l10n_mx_cfdi4_0_domicilio_fiscal_acuenta_terceros = fields.Char(
         string="DomicilioFiscalACuentaTerceros",
         xsd_required=True,
         help=(
@@ -998,13 +998,13 @@ class InformacionAduanera(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.InformacionAduanera"
 
-    l10n_mx_cfdi4_0_InformacionAduanera_Concepto_id = fields.Many2one(
+    l10n_mx_cfdi4_0_informacion_aduanera_concepto_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_InformacionAduanera_Parte_id = fields.Many2one(
+    l10n_mx_cfdi4_0_informacion_aduanera_parte_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.parte", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_NumeroPedimento = fields.Char(
+    l10n_mx_cfdi4_0_numero_pedimento = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         help=(
@@ -1034,10 +1034,10 @@ class CuentaPredial(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.CuentaPredial"
 
-    l10n_mx_cfdi4_0_CuentaPredial_Concepto_id = fields.Many2one(
+    l10n_mx_cfdi4_0_cuenta_predial_concepto_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_Numero = fields.Char(
+    l10n_mx_cfdi4_0_numero = fields.Char(
         string="Atributo requerido para precisar",
         xsd_required=True,
         help=(
@@ -1071,12 +1071,12 @@ class Parte(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Parte"
 
-    l10n_mx_cfdi4_0_Parte_Concepto_id = fields.Many2one(
+    l10n_mx_cfdi4_0_parte_concepto_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_InformacionAduanera = fields.One2many(
+    l10n_mx_cfdi4_0_informacion_aduanera = fields.One2many(
         "l10n_mx_cfdi.4_0.informacionaduanera",
-        "l10n_mx_cfdi4_0_InformacionAduanera_Parte_id",
+        "l10n_mx_cfdi4_0_informacion_aduanera_parte_id",
         string="Nodo opcional para introducir",
         help=(
             "Nodo opcional para introducir la información aduanera aplicable "
@@ -1086,7 +1086,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ClaveProdServ = fields.Char(
+    l10n_mx_cfdi4_0_clave_prod_serv = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         xsd_type="catCFDI:c_ClaveProdServ",
@@ -1099,7 +1099,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_NoIdentificacion = fields.Char(
+    l10n_mx_cfdi4_0_no_identificacion = fields.Char(
         string="Atributo opcional para expresar",
         help=(
             "Atributo opcional para expresar el número de serie, número de "
@@ -1109,7 +1109,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Cantidad = fields.Float(
+    l10n_mx_cfdi4_0_cantidad = fields.Float(
         string="Atributo requerido para precisar",
         xsd_required=True,
         help=(
@@ -1118,7 +1118,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Unidad = fields.Char(
+    l10n_mx_cfdi4_0_unidad = fields.Char(
         string="Atributo opcional para precisar",
         help=(
             "Atributo opcional para precisar la unidad de medida propia de la "
@@ -1128,7 +1128,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Descripcion = fields.Char(
+    l10n_mx_cfdi4_0_descripcion = fields.Char(
         string="Descripcion",
         xsd_required=True,
         help=(
@@ -1137,7 +1137,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_ValorUnitario = fields.Char(
+    l10n_mx_cfdi4_0_valor_unitario = fields.Char(
         string="Atributo opcional para precisar el valor",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -1147,7 +1147,7 @@ class Parte(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Importe",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -1165,13 +1165,13 @@ class InformacionAduanera(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Parte.InformacionAduanera"
 
-    l10n_mx_cfdi4_0_InformacionAduanera_Concepto_id = fields.Many2one(
+    l10n_mx_cfdi4_0_informacion_aduanera_concepto_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_InformacionAduanera_Parte_id = fields.Many2one(
+    l10n_mx_cfdi4_0_informacion_aduanera_parte_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.parte", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_NumeroPedimento = fields.Char(
+    l10n_mx_cfdi4_0_numero_pedimento = fields.Char(
         string="Atributo requerido para expresar",
         xsd_required=True,
         help=(
@@ -1198,7 +1198,7 @@ class Impuestos(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos"
 
-    l10n_mx_cfdi4_0_Retenciones = fields.Many2one(
+    l10n_mx_cfdi4_0_retenciones = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         string="Nodo condicional para capturar",
         help=(
@@ -1208,7 +1208,7 @@ class Impuestos(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Traslados = fields.Many2one(
+    l10n_mx_cfdi4_0_traslados = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.traslados",
         string="Traslados",
         help=(
@@ -1218,7 +1218,7 @@ class Impuestos(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TotalImpuestosRetenidos = fields.Char(
+    l10n_mx_cfdi4_0_total_impuestos_retenidos = fields.Char(
         string="Atributo condicional para expresar",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -1230,7 +1230,7 @@ class Impuestos(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TotalImpuestosTrasladados = fields.Char(
+    l10n_mx_cfdi4_0_total_impuestos_trasladados = fields.Char(
         string="TotalImpuestosTrasladados",
         xsd_type="tdCFDI:t_Importe",
         help=(
@@ -1252,9 +1252,9 @@ class Retenciones(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Retenciones"
 
-    l10n_mx_cfdi4_0_Retencion = fields.One2many(
+    l10n_mx_cfdi4_0_retencion = fields.One2many(
         "l10n_mx_cfdi.4_0.retencion",
-        "l10n_mx_cfdi4_0_Retencion_Retenciones_id",
+        "l10n_mx_cfdi4_0_retencion_retenciones_id",
         string="Nodo requerido",
         help=(
             "Nodo requerido para la información detallada de una retención de "
@@ -1272,17 +1272,17 @@ class Retencion(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Retenciones.Retencion"
 
-    l10n_mx_cfdi4_0_Retencion_Retenciones_id = fields.Many2one(
+    l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_Retencion_Retenciones_id = fields.Many2one(
+    l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
-    l10n_mx_cfdi4_0_Impuesto = fields.Char(
+    l10n_mx_cfdi4_0_impuesto = fields.Char(
         string="Atributo requerido para señalar la clave",
         xsd_required=True,
         xsd_type="catCFDI:c_Impuesto",
@@ -1291,7 +1291,7 @@ class Retencion(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Atributo requerido para señalar el monto",
         xsd_required=True,
         xsd_type="tdCFDI:t_Importe",
@@ -1308,9 +1308,9 @@ class Traslados(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Traslados"
 
-    l10n_mx_cfdi4_0_Traslado = fields.One2many(
+    l10n_mx_cfdi4_0_traslado = fields.One2many(
         "l10n_mx_cfdi.4_0.traslado",
-        "l10n_mx_cfdi4_0_Traslado_Traslados_id",
+        "l10n_mx_cfdi4_0_traslado_traslados_id",
         string="Nodo requerido",
         help=(
             "Nodo requerido para la información detallada de un traslado de "
@@ -1325,10 +1325,10 @@ class Traslado(models.AbstractModel):
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Traslados.Traslado"
 
-    l10n_mx_cfdi4_0_Traslado_Traslados_id = fields.Many2one(
+    l10n_mx_cfdi4_0_traslado_traslados_id = fields.Many2one(
         comodel_name="l10n_mx_cfdi.4_0.traslados", xsd_implicit=True, ondelete="cascade"
     )
-    l10n_mx_cfdi4_0_Base = fields.Char(
+    l10n_mx_cfdi4_0_base = fields.Char(
         string="Atributo requerido para señalar",
         xsd_required=True,
         help=(
@@ -1338,7 +1338,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Impuesto = fields.Char(
+    l10n_mx_cfdi4_0_impuesto = fields.Char(
         string="Atributo requerido para señalar la clave",
         xsd_required=True,
         xsd_type="catCFDI:c_Impuesto",
@@ -1348,7 +1348,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TipoFactor = fields.Char(
+    l10n_mx_cfdi4_0_tipo_factor = fields.Char(
         string="TipoFactor",
         xsd_required=True,
         xsd_type="catCFDI:c_TipoFactor",
@@ -1358,7 +1358,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_TasaOCuota = fields.Float(
+    l10n_mx_cfdi4_0_tasa_ocuota = fields.Float(
         string="Atributo condicional para señalar",
         help=(
             "Atributo condicional para señalar el valor de la tasa o cuota del"
@@ -1367,7 +1367,7 @@ class Traslado(models.AbstractModel):
         ),
     )
 
-    l10n_mx_cfdi4_0_Importe = fields.Char(
+    l10n_mx_cfdi4_0_importe = fields.Char(
         string="Importe",
         xsd_type="tdCFDI:t_Importe",
         help=(

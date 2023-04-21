@@ -2,7 +2,7 @@ from odoo import models
 
 
 class CFDISpecModel(models.AbstractModel):
-    _description = 'Abstract model CFDI Mixin XSD'
+    _description = "Abstract model CFDI Mixin XSD"
     _name = "spec.mixin.l10n_mx_cfdi"
     _field_prefix = "l10n_mx_cfdi4_0_"
     _schema_name = "cfdi"

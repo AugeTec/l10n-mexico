@@ -110,6 +110,7 @@ class Comprobante:
         establecido o con ambos casos. Es requerido cuando se registra
         un tipo de cambio o un total fuera del rango establecido.
     """
+
     class Meta:
         namespace = "http://www.sat.gob.mx/cfd/4"
 
@@ -118,14 +119,14 @@ class Comprobante:
         metadata={
             "name": "InformacionGlobal",
             "type": "Element",
-        }
+        },
     )
     cfdi_relacionados: List["Comprobante.CfdiRelacionados"] = field(
         default_factory=list,
         metadata={
             "name": "CfdiRelacionados",
             "type": "Element",
-        }
+        },
     )
     emisor: Optional["Comprobante.Emisor"] = field(
         default=None,
@@ -133,7 +134,7 @@ class Comprobante:
             "name": "Emisor",
             "type": "Element",
             "required": True,
-        }
+        },
     )
     receptor: Optional["Comprobante.Receptor"] = field(
         default=None,
@@ -141,7 +142,7 @@ class Comprobante:
             "name": "Receptor",
             "type": "Element",
             "required": True,
-        }
+        },
     )
     conceptos: Optional["Comprobante.Conceptos"] = field(
         default=None,
@@ -149,28 +150,28 @@ class Comprobante:
             "name": "Conceptos",
             "type": "Element",
             "required": True,
-        }
+        },
     )
     impuestos: Optional["Comprobante.Impuestos"] = field(
         default=None,
         metadata={
             "name": "Impuestos",
             "type": "Element",
-        }
+        },
     )
     complemento: Optional["Comprobante.Complemento"] = field(
         default=None,
         metadata={
             "name": "Complemento",
             "type": "Element",
-        }
+        },
     )
     addenda: Optional["Comprobante.Addenda"] = field(
         default=None,
         metadata={
             "name": "Addenda",
             "type": "Element",
-        }
+        },
     )
     version: str = field(
         init=False,
@@ -180,7 +181,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     serie: Optional[str] = field(
         default=None,
@@ -191,7 +192,7 @@ class Comprobante:
             "max_length": 25,
             "white_space": "collapse",
             "pattern": r"[^|]{1,25}",
-        }
+        },
     )
     folio: Optional[str] = field(
         default=None,
@@ -202,7 +203,7 @@ class Comprobante:
             "max_length": 40,
             "white_space": "collapse",
             "pattern": r"[^|]{1,40}",
-        }
+        },
     )
     fecha: Optional[str] = field(
         default=None,
@@ -212,7 +213,7 @@ class Comprobante:
             "required": True,
             "white_space": "collapse",
             "pattern": r"(20[1-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])",
-        }
+        },
     )
     sello: Optional[str] = field(
         default=None,
@@ -221,7 +222,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     forma_pago: Optional[str] = field(
         default=None,
@@ -229,7 +230,7 @@ class Comprobante:
             "name": "FormaPago",
             "type": "Attribute",
             "white_space": "collapse",
-        }
+        },
     )
     no_certificado: Optional[str] = field(
         default=None,
@@ -240,7 +241,7 @@ class Comprobante:
             "length": 20,
             "white_space": "collapse",
             "pattern": r"[0-9]{20}",
-        }
+        },
     )
     certificado: Optional[str] = field(
         default=None,
@@ -249,7 +250,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     condiciones_de_pago: Optional[str] = field(
         default=None,
@@ -260,7 +261,7 @@ class Comprobante:
             "max_length": 1000,
             "white_space": "collapse",
             "pattern": r"[^|]{1,1000}",
-        }
+        },
     )
     sub_total: Optional[str] = field(
         default=None,
@@ -272,7 +273,7 @@ class Comprobante:
             "fraction_digits": 6,
             "white_space": "collapse",
             "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-        }
+        },
     )
     descuento: Optional[str] = field(
         default=None,
@@ -283,7 +284,7 @@ class Comprobante:
             "fraction_digits": 6,
             "white_space": "collapse",
             "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-        }
+        },
     )
     moneda: Optional[str] = field(
         default=None,
@@ -292,7 +293,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     tipo_cambio: Optional[Decimal] = field(
         default=None,
@@ -302,7 +303,7 @@ class Comprobante:
             "min_inclusive": Decimal("0.000001"),
             "fraction_digits": 6,
             "white_space": "collapse",
-        }
+        },
     )
     total: Optional[str] = field(
         default=None,
@@ -314,7 +315,7 @@ class Comprobante:
             "fraction_digits": 6,
             "white_space": "collapse",
             "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-        }
+        },
     )
     tipo_de_comprobante: Optional[str] = field(
         default=None,
@@ -323,7 +324,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     exportacion: Optional[str] = field(
         default=None,
@@ -332,7 +333,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     metodo_pago: Optional[str] = field(
         default=None,
@@ -340,7 +341,7 @@ class Comprobante:
             "name": "MetodoPago",
             "type": "Attribute",
             "white_space": "collapse",
-        }
+        },
     )
     lugar_expedicion: Optional[str] = field(
         default=None,
@@ -349,7 +350,7 @@ class Comprobante:
             "type": "Attribute",
             "required": True,
             "white_space": "collapse",
-        }
+        },
     )
     confirmacion: Optional[str] = field(
         default=None,
@@ -359,7 +360,7 @@ class Comprobante:
             "length": 5,
             "white_space": "collapse",
             "pattern": r"[0-9a-zA-Z]{5}",
-        }
+        },
     )
 
     @dataclass
@@ -369,9 +370,10 @@ class Comprobante:
             al que corresponde la información del comprobante global.
         :ivar meses: Atributo requerido para expresar el mes o los meses
             al que corresponde la información del comprobante global.
-        :ivar a_o: Atributo requerido para expresar el año al que
+        :ivar anio: Atributo requerido para expresar el año al que
             corresponde la información del comprobante global.
         """
+
         periodicidad: Optional[str] = field(
             default=None,
             metadata={
@@ -379,7 +381,7 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
         meses: Optional[str] = field(
             default=None,
@@ -388,9 +390,9 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
-        a_o: Optional[int] = field(
+        anio: Optional[int] = field(
             default=None,
             metadata={
                 "name": "Año",
@@ -398,7 +400,7 @@ class Comprobante:
                 "required": True,
                 "min_inclusive": 2021,
                 "white_space": "collapse",
-            }
+            },
         )
 
     @dataclass
@@ -410,13 +412,14 @@ class Comprobante:
             la relación que existe entre éste que se está generando y el
             o los CFDI previos.
         """
+
         cfdi_relacionado: List["Comprobante.CfdiRelacionados.CfdiRelacionado"] = field(
             default_factory=list,
             metadata={
                 "name": "CfdiRelacionado",
                 "type": "Element",
                 "min_occurs": 1,
-            }
+            },
         )
         tipo_relacion: Optional[str] = field(
             default=None,
@@ -425,7 +428,7 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
 
         @dataclass
@@ -441,6 +444,7 @@ class Comprobante:
                 el comprobante relacionado. Si éste sustituye a una
                 factura cancelada.
             """
+
             uuid: Optional[str] = field(
                 default=None,
                 metadata={
@@ -450,7 +454,7 @@ class Comprobante:
                     "length": 36,
                     "white_space": "collapse",
                     "pattern": r"[a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{12}",
-                }
+                },
             )
 
     @dataclass
@@ -469,6 +473,7 @@ class Comprobante:
             número de operación proporcionado por el SAT cuando se trate
             de un comprobante a través de un PCECFDI o un PCGCFDISP.
         """
+
         rfc: Optional[str] = field(
             default=None,
             metadata={
@@ -479,7 +484,7 @@ class Comprobante:
                 "max_length": 13,
                 "white_space": "collapse",
                 "pattern": r"[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]",
-            }
+            },
         )
         nombre: Optional[str] = field(
             default=None,
@@ -491,7 +496,7 @@ class Comprobante:
                 "max_length": 300,
                 "white_space": "collapse",
                 "pattern": r"[^|]{1,300}",
-            }
+            },
         )
         regimen_fiscal: Optional[str] = field(
             default=None,
@@ -500,7 +505,7 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
         fac_atr_adquirente: Optional[str] = field(
             default=None,
@@ -510,7 +515,7 @@ class Comprobante:
                 "length": 10,
                 "white_space": "collapse",
                 "pattern": r"[0-9]{10}",
-            }
+            },
         )
 
     @dataclass
@@ -543,6 +548,7 @@ class Comprobante:
         :ivar uso_cfdi: Atributo requerido para expresar la clave del
             uso que dará a esta factura el receptor del CFDI.
         """
+
         rfc: Optional[str] = field(
             default=None,
             metadata={
@@ -553,7 +559,7 @@ class Comprobante:
                 "max_length": 13,
                 "white_space": "collapse",
                 "pattern": r"[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]",
-            }
+            },
         )
         nombre: Optional[str] = field(
             default=None,
@@ -565,7 +571,7 @@ class Comprobante:
                 "max_length": 300,
                 "white_space": "collapse",
                 "pattern": r"[^|]{1,300}",
-            }
+            },
         )
         domicilio_fiscal_receptor: Optional[str] = field(
             default=None,
@@ -576,7 +582,7 @@ class Comprobante:
                 "length": 5,
                 "white_space": "collapse",
                 "pattern": r"[0-9]{5}",
-            }
+            },
         )
         residencia_fiscal: Optional[str] = field(
             default=None,
@@ -584,7 +590,7 @@ class Comprobante:
                 "name": "ResidenciaFiscal",
                 "type": "Attribute",
                 "white_space": "collapse",
-            }
+            },
         )
         num_reg_id_trib: Optional[str] = field(
             default=None,
@@ -594,7 +600,7 @@ class Comprobante:
                 "min_length": 1,
                 "max_length": 40,
                 "white_space": "collapse",
-            }
+            },
         )
         regimen_fiscal_receptor: Optional[str] = field(
             default=None,
@@ -603,7 +609,7 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
         uso_cfdi: Optional[str] = field(
             default=None,
@@ -612,7 +618,7 @@ class Comprobante:
                 "type": "Attribute",
                 "required": True,
                 "white_space": "collapse",
-            }
+            },
         )
 
     @dataclass
@@ -621,13 +627,14 @@ class Comprobante:
         :ivar concepto: Nodo requerido para registrar la información
             detallada de un bien o servicio amparado en el comprobante.
         """
+
         concepto: List["Comprobante.Conceptos.Concepto"] = field(
             default_factory=list,
             metadata={
                 "name": "Concepto",
                 "type": "Element",
                 "min_occurs": 1,
-            }
+            },
         )
 
         @dataclass
@@ -695,47 +702,56 @@ class Comprobante:
             :ivar objeto_imp: Atributo requerido para expresar si la
                 operación comercial es objeto o no de impuesto.
             """
+
             impuestos: Optional["Comprobante.Conceptos.Concepto.Impuestos"] = field(
                 default=None,
                 metadata={
                     "name": "Impuestos",
                     "type": "Element",
-                }
+                },
             )
-            acuenta_terceros: Optional["Comprobante.Conceptos.Concepto.AcuentaTerceros"] = field(
+            acuenta_terceros: Optional[
+                "Comprobante.Conceptos.Concepto.AcuentaTerceros"
+            ] = field(
                 default=None,
                 metadata={
                     "name": "ACuentaTerceros",
                     "type": "Element",
-                }
+                },
             )
-            informacion_aduanera: List["Comprobante.Conceptos.Concepto.InformacionAduanera"] = field(
+            informacion_aduanera: List[
+                "Comprobante.Conceptos.Concepto.InformacionAduanera"
+            ] = field(
                 default_factory=list,
                 metadata={
                     "name": "InformacionAduanera",
                     "type": "Element",
-                }
+                },
             )
-            cuenta_predial: List["Comprobante.Conceptos.Concepto.CuentaPredial"] = field(
+            cuenta_predial: List[
+                "Comprobante.Conceptos.Concepto.CuentaPredial"
+            ] = field(
                 default_factory=list,
                 metadata={
                     "name": "CuentaPredial",
                     "type": "Element",
-                }
+                },
             )
-            complemento_concepto: Optional["Comprobante.Conceptos.Concepto.ComplementoConcepto"] = field(
+            complemento_concepto: Optional[
+                "Comprobante.Conceptos.Concepto.ComplementoConcepto"
+            ] = field(
                 default=None,
                 metadata={
                     "name": "ComplementoConcepto",
                     "type": "Element",
-                }
+                },
             )
             parte: List["Comprobante.Conceptos.Concepto.Parte"] = field(
                 default_factory=list,
                 metadata={
                     "name": "Parte",
                     "type": "Element",
-                }
+                },
             )
             clave_prod_serv: Optional[str] = field(
                 default=None,
@@ -744,7 +760,7 @@ class Comprobante:
                     "type": "Attribute",
                     "required": True,
                     "white_space": "collapse",
-                }
+                },
             )
             no_identificacion: Optional[str] = field(
                 default=None,
@@ -755,7 +771,7 @@ class Comprobante:
                     "max_length": 100,
                     "white_space": "collapse",
                     "pattern": r"[^|]{1,100}",
-                }
+                },
             )
             cantidad: Optional[Decimal] = field(
                 default=None,
@@ -766,7 +782,7 @@ class Comprobante:
                     "min_inclusive": Decimal("0.000001"),
                     "fraction_digits": 6,
                     "white_space": "collapse",
-                }
+                },
             )
             clave_unidad: Optional[str] = field(
                 default=None,
@@ -775,7 +791,7 @@ class Comprobante:
                     "type": "Attribute",
                     "required": True,
                     "white_space": "collapse",
-                }
+                },
             )
             unidad: Optional[str] = field(
                 default=None,
@@ -786,7 +802,7 @@ class Comprobante:
                     "max_length": 20,
                     "white_space": "collapse",
                     "pattern": r"[^|]{1,20}",
-                }
+                },
             )
             descripcion: Optional[str] = field(
                 default=None,
@@ -798,7 +814,7 @@ class Comprobante:
                     "max_length": 1000,
                     "white_space": "collapse",
                     "pattern": r"[^|]{1,1000}",
-                }
+                },
             )
             valor_unitario: Optional[str] = field(
                 default=None,
@@ -810,7 +826,7 @@ class Comprobante:
                     "fraction_digits": 6,
                     "white_space": "collapse",
                     "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                }
+                },
             )
             importe: Optional[str] = field(
                 default=None,
@@ -822,7 +838,7 @@ class Comprobante:
                     "fraction_digits": 6,
                     "white_space": "collapse",
                     "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                }
+                },
             )
             descuento: Optional[str] = field(
                 default=None,
@@ -833,7 +849,7 @@ class Comprobante:
                     "fraction_digits": 6,
                     "white_space": "collapse",
                     "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                }
+                },
             )
             objeto_imp: Optional[str] = field(
                 default=None,
@@ -842,7 +858,7 @@ class Comprobante:
                     "type": "Attribute",
                     "required": True,
                     "white_space": "collapse",
-                }
+                },
             )
 
             @dataclass
@@ -854,19 +870,24 @@ class Comprobante:
                 :ivar retenciones: Nodo opcional para asentar los
                     impuestos retenidos aplicables al presente concepto.
                 """
-                traslados: Optional["Comprobante.Conceptos.Concepto.Impuestos.Traslados"] = field(
+
+                traslados: Optional[
+                    "Comprobante.Conceptos.Concepto.Impuestos.Traslados"
+                ] = field(
                     default=None,
                     metadata={
                         "name": "Traslados",
                         "type": "Element",
-                    }
+                    },
                 )
-                retenciones: Optional["Comprobante.Conceptos.Concepto.Impuestos.Retenciones"] = field(
+                retenciones: Optional[
+                    "Comprobante.Conceptos.Concepto.Impuestos.Retenciones"
+                ] = field(
                     default=None,
                     metadata={
                         "name": "Retenciones",
                         "type": "Element",
-                    }
+                    },
                 )
 
                 @dataclass
@@ -876,13 +897,16 @@ class Comprobante:
                         información detallada de un traslado de
                         impuestos aplicable al presente concepto.
                     """
-                    traslado: List["Comprobante.Conceptos.Concepto.Impuestos.Traslados.Traslado"] = field(
+
+                    traslado: List[
+                        "Comprobante.Conceptos.Concepto.Impuestos.Traslados.Traslado"
+                    ] = field(
                         default_factory=list,
                         metadata={
                             "name": "Traslado",
                             "type": "Element",
                             "min_occurs": 1,
-                        }
+                        },
                     )
 
                     @dataclass
@@ -911,6 +935,7 @@ class Comprobante:
                             negativos. Es requerido cuando TipoFactor
                             sea Tasa o Cuota.
                         """
+
                         base: Optional[Decimal] = field(
                             default=None,
                             metadata={
@@ -920,7 +945,7 @@ class Comprobante:
                                 "min_inclusive": Decimal("0.000001"),
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         impuesto: Optional[str] = field(
                             default=None,
@@ -929,7 +954,7 @@ class Comprobante:
                                 "type": "Attribute",
                                 "required": True,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         tipo_factor: Optional[str] = field(
                             default=None,
@@ -938,7 +963,7 @@ class Comprobante:
                                 "type": "Attribute",
                                 "required": True,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         tasa_ocuota: Optional[Decimal] = field(
                             default=None,
@@ -948,7 +973,7 @@ class Comprobante:
                                 "min_inclusive": Decimal("0.000000"),
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         importe: Optional[str] = field(
                             default=None,
@@ -959,7 +984,7 @@ class Comprobante:
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
                                 "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                            }
+                            },
                         )
 
                 @dataclass
@@ -969,13 +994,16 @@ class Comprobante:
                         información detallada de una retención de
                         impuestos aplicable al presente concepto.
                     """
-                    retencion: List["Comprobante.Conceptos.Concepto.Impuestos.Retenciones.Retencion"] = field(
+
+                    retencion: List[
+                        "Comprobante.Conceptos.Concepto.Impuestos.Retenciones.Retencion"
+                    ] = field(
                         default_factory=list,
                         metadata={
                             "name": "Retencion",
                             "type": "Element",
                             "min_occurs": 1,
-                        }
+                        },
                     )
 
                     @dataclass
@@ -1000,6 +1028,7 @@ class Comprobante:
                             al concepto. No se permiten valores
                             negativos.
                         """
+
                         base: Optional[Decimal] = field(
                             default=None,
                             metadata={
@@ -1009,7 +1038,7 @@ class Comprobante:
                                 "min_inclusive": Decimal("0.000001"),
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         impuesto: Optional[str] = field(
                             default=None,
@@ -1018,7 +1047,7 @@ class Comprobante:
                                 "type": "Attribute",
                                 "required": True,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         tipo_factor: Optional[str] = field(
                             default=None,
@@ -1027,7 +1056,7 @@ class Comprobante:
                                 "type": "Attribute",
                                 "required": True,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         tasa_ocuota: Optional[Decimal] = field(
                             default=None,
@@ -1038,7 +1067,7 @@ class Comprobante:
                                 "min_inclusive": Decimal("0.000000"),
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
-                            }
+                            },
                         )
                         importe: Optional[str] = field(
                             default=None,
@@ -1050,7 +1079,7 @@ class Comprobante:
                                 "fraction_digits": 6,
                                 "white_space": "collapse",
                                 "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                            }
+                            },
                         )
 
             @dataclass
@@ -1073,6 +1102,7 @@ class Comprobante:
                     domicilio fiscal del Tercero, a cuenta del que se
                     realiza la operación.
                 """
+
                 rfc_acuenta_terceros: Optional[str] = field(
                     default=None,
                     metadata={
@@ -1083,7 +1113,7 @@ class Comprobante:
                         "max_length": 13,
                         "white_space": "collapse",
                         "pattern": r"[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]",
-                    }
+                    },
                 )
                 nombre_acuenta_terceros: Optional[str] = field(
                     default=None,
@@ -1095,7 +1125,7 @@ class Comprobante:
                         "max_length": 300,
                         "white_space": "collapse",
                         "pattern": r"[^|]{1,300}",
-                    }
+                    },
                 )
                 regimen_fiscal_acuenta_terceros: Optional[str] = field(
                     default=None,
@@ -1104,7 +1134,7 @@ class Comprobante:
                         "type": "Attribute",
                         "required": True,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 domicilio_fiscal_acuenta_terceros: Optional[str] = field(
                     default=None,
@@ -1115,7 +1145,7 @@ class Comprobante:
                         "length": 5,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{5}",
-                    }
+                    },
                 )
 
             @dataclass
@@ -1134,6 +1164,7 @@ class Comprobante:
                     de una rectificación, seguido de 6 dígitos de la
                     numeración progresiva por aduana.
                 """
+
                 numero_pedimento: Optional[str] = field(
                     default=None,
                     metadata={
@@ -1142,7 +1173,7 @@ class Comprobante:
                         "required": True,
                         "length": 21,
                         "pattern": r"[0-9]{2}  [0-9]{2}  [0-9]{4}  [0-9]{7}",
-                    }
+                    },
                 )
 
             @dataclass
@@ -1155,6 +1186,7 @@ class Comprobante:
                     inmobiliaria no amortizable, tratándose de
                     arrendamiento.
                 """
+
                 numero: Optional[str] = field(
                     default=None,
                     metadata={
@@ -1165,7 +1197,7 @@ class Comprobante:
                         "max_length": 150,
                         "white_space": "collapse",
                         "pattern": r"[0-9a-zA-Z]{1,150}",
-                    }
+                    },
                 )
 
             @dataclass
@@ -1175,7 +1207,7 @@ class Comprobante:
                     metadata={
                         "type": "Wildcard",
                         "namespace": "##any",
-                    }
+                    },
                 )
 
             @dataclass
@@ -1219,12 +1251,15 @@ class Comprobante:
                     expresado en la parte. No se permiten valores
                     negativos.
                 """
-                informacion_aduanera: List["Comprobante.Conceptos.Concepto.Parte.InformacionAduanera"] = field(
+
+                informacion_aduanera: List[
+                    "Comprobante.Conceptos.Concepto.Parte.InformacionAduanera"
+                ] = field(
                     default_factory=list,
                     metadata={
                         "name": "InformacionAduanera",
                         "type": "Element",
-                    }
+                    },
                 )
                 clave_prod_serv: Optional[str] = field(
                     default=None,
@@ -1233,7 +1268,7 @@ class Comprobante:
                         "type": "Attribute",
                         "required": True,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 no_identificacion: Optional[str] = field(
                     default=None,
@@ -1244,7 +1279,7 @@ class Comprobante:
                         "max_length": 100,
                         "white_space": "collapse",
                         "pattern": r"[^|]{1,100}",
-                    }
+                    },
                 )
                 cantidad: Optional[Decimal] = field(
                     default=None,
@@ -1255,7 +1290,7 @@ class Comprobante:
                         "min_inclusive": Decimal("0.000001"),
                         "fraction_digits": 6,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 unidad: Optional[str] = field(
                     default=None,
@@ -1266,7 +1301,7 @@ class Comprobante:
                         "max_length": 20,
                         "white_space": "collapse",
                         "pattern": r"[^|]{1,20}",
-                    }
+                    },
                 )
                 descripcion: Optional[str] = field(
                     default=None,
@@ -1278,7 +1313,7 @@ class Comprobante:
                         "max_length": 1000,
                         "white_space": "collapse",
                         "pattern": r"[^|]{1,1000}",
-                    }
+                    },
                 )
                 valor_unitario: Optional[str] = field(
                     default=None,
@@ -1289,7 +1324,7 @@ class Comprobante:
                         "fraction_digits": 6,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                    }
+                    },
                 )
                 importe: Optional[str] = field(
                     default=None,
@@ -1300,7 +1335,7 @@ class Comprobante:
                         "fraction_digits": 6,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                    }
+                    },
                 )
 
                 @dataclass
@@ -1321,6 +1356,7 @@ class Comprobante:
                         de 6 dígitos de la numeración progresiva por
                         aduana.
                     """
+
                     numero_pedimento: Optional[str] = field(
                         default=None,
                         metadata={
@@ -1329,7 +1365,7 @@ class Comprobante:
                             "required": True,
                             "length": 21,
                             "pattern": r"[0-9]{2}  [0-9]{2}  [0-9]{4}  [0-9]{7}",
-                        }
+                        },
                     )
 
     @dataclass
@@ -1354,19 +1390,20 @@ class Comprobante:
             negativos. Es requerido cuando en los conceptos se registren
             impuestos trasladados.
         """
+
         retenciones: Optional["Comprobante.Impuestos.Retenciones"] = field(
             default=None,
             metadata={
                 "name": "Retenciones",
                 "type": "Element",
-            }
+            },
         )
         traslados: Optional["Comprobante.Impuestos.Traslados"] = field(
             default=None,
             metadata={
                 "name": "Traslados",
                 "type": "Element",
-            }
+            },
         )
         total_impuestos_retenidos: Optional[str] = field(
             default=None,
@@ -1377,7 +1414,7 @@ class Comprobante:
                 "fraction_digits": 6,
                 "white_space": "collapse",
                 "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-            }
+            },
         )
         total_impuestos_trasladados: Optional[str] = field(
             default=None,
@@ -1388,7 +1425,7 @@ class Comprobante:
                 "fraction_digits": 6,
                 "white_space": "collapse",
                 "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-            }
+            },
         )
 
         @dataclass
@@ -1397,13 +1434,14 @@ class Comprobante:
             :ivar retencion: Nodo requerido para la información
                 detallada de una retención de impuesto específico.
             """
+
             retencion: List["Comprobante.Impuestos.Retenciones.Retencion"] = field(
                 default_factory=list,
                 metadata={
                     "name": "Retencion",
                     "type": "Element",
                     "min_occurs": 1,
-                }
+                },
             )
 
             @dataclass
@@ -1415,6 +1453,7 @@ class Comprobante:
                     del impuesto retenido. No se permiten valores
                     negativos.
                 """
+
                 impuesto: Optional[str] = field(
                     default=None,
                     metadata={
@@ -1422,7 +1461,7 @@ class Comprobante:
                         "type": "Attribute",
                         "required": True,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 importe: Optional[str] = field(
                     default=None,
@@ -1434,7 +1473,7 @@ class Comprobante:
                         "fraction_digits": 6,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                    }
+                    },
                 )
 
         @dataclass
@@ -1443,13 +1482,14 @@ class Comprobante:
             :ivar traslado: Nodo requerido para la información detallada
                 de un traslado de impuesto específico.
             """
+
             traslado: List["Comprobante.Impuestos.Traslados.Traslado"] = field(
                 default_factory=list,
                 metadata={
                     "name": "Traslado",
                     "type": "Element",
                     "min_occurs": 1,
-                }
+                },
             )
 
             @dataclass
@@ -1472,6 +1512,7 @@ class Comprobante:
                     impuesto, TipoFactor y TasaOCuota. No se permiten
                     valores negativos.
                 """
+
                 base: Optional[str] = field(
                     default=None,
                     metadata={
@@ -1482,7 +1523,7 @@ class Comprobante:
                         "fraction_digits": 6,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                    }
+                    },
                 )
                 impuesto: Optional[str] = field(
                     default=None,
@@ -1491,7 +1532,7 @@ class Comprobante:
                         "type": "Attribute",
                         "required": True,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 tipo_factor: Optional[str] = field(
                     default=None,
@@ -1500,7 +1541,7 @@ class Comprobante:
                         "type": "Attribute",
                         "required": True,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 tasa_ocuota: Optional[Decimal] = field(
                     default=None,
@@ -1510,7 +1551,7 @@ class Comprobante:
                         "min_inclusive": Decimal("0.000000"),
                         "fraction_digits": 6,
                         "white_space": "collapse",
-                    }
+                    },
                 )
                 importe: Optional[str] = field(
                     default=None,
@@ -1521,7 +1562,7 @@ class Comprobante:
                         "fraction_digits": 6,
                         "white_space": "collapse",
                         "pattern": r"[0-9]{1,18}(.[0-9]{1,6})?",
-                    }
+                    },
                 )
 
     @dataclass
@@ -1531,7 +1572,7 @@ class Comprobante:
             metadata={
                 "type": "Wildcard",
                 "namespace": "##any",
-            }
+            },
         )
 
     @dataclass
@@ -1541,5 +1582,5 @@ class Comprobante:
             metadata={
                 "type": "Wildcard",
                 "namespace": "##any",
-            }
+            },
         )
