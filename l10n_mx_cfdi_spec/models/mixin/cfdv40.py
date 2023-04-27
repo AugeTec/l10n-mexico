@@ -774,7 +774,7 @@ class Traslados(models.AbstractModel):
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados"
 
     l10n_mx_cfdi4_0_traslado = fields.One2many(
-        "l10n_mx_cfdi.4_0.traslado",
+        "l10n_mx_cfdi.4_0.concepto_traslado",
         "l10n_mx_cfdi4_0_traslado_traslados_id",
         string="Traslado",
         help=(
@@ -784,12 +784,12 @@ class Traslados(models.AbstractModel):
     )
 
 
-class Traslado(models.AbstractModel):
+class ConceptoTraslado(models.AbstractModel):
     """Nodo requerido para asentar la información detallada de un traslado de
     impuestos aplicable al presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.traslado"
+    _name = "l10n_mx_cfdi.4_0.concepto_traslado"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados.Traslado"
 
