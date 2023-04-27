@@ -585,7 +585,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_informacion_aduanera = fields.One2many(
-        "l10n_mx_cfdi.4_0.informacionaduanera",
+        "l10n_mx_cfdi.4_0.concepto_informacionaduanera",
         "l10n_mx_cfdi4_0_informacion_aduanera_concepto_id",
         string="InformacionAduanera",
         help=(
@@ -988,13 +988,13 @@ class AcuentaTerceros(models.AbstractModel):
     )
 
 
-class InformacionAduanera(models.AbstractModel):
+class ConceptoInformacionAduanera(models.AbstractModel):
     """Nodo opcional para introducir la información aduanera aplicable cuando
     se trate de ventas de primera mano de mercancías importadas o se trate
     de operaciones de comercio exterior con bienes o servicios."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.informacionaduanera"
+    _name = "l10n_mx_cfdi.4_0.concepto_informacionaduanera"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.InformacionAduanera"
 
