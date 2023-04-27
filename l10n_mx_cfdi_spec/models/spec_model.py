@@ -8,8 +8,8 @@ class CFDISpecModel(models.AbstractModel):
     _schema_name = "cfdi"
     _schema_version = "4.0"
     _odoo_module = "odoo.addons.l10n_mx_cfdi"
-    _spec_module = "odoo.addons.l10n_mx_cfdi_spec.models.mixin.comprobante"
-    _binding_module = "odoo.addons.l10n_mx_cfdi_spec.models.lib.comprobante"
+    _spec_module = "odoo.addons.l10n_mx_cfdi_spec.models.mixin.cfdv40"
+    _binding_module = "odoo.addons.l10n_mx_cfdi_spec.models.lib.cfdv40"
     _spec_tab_name = "CFDI"
     _inherit = "spec.mixin"
 

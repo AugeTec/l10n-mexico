@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Config xmlns="http://pypi.org/project/xsdata" version="22.7">
     <Output maxLineLength="79">
-        <Structure>clusters</Structure>
+        <Structure>filenames</Structure>
         <DocstringStyle>reStructuredText</DocstringStyle>
         <RelativeImports>true</RelativeImports>
         <CompoundFields defaultName="choice" forceDefaultName="false">false</CompoundFields>
