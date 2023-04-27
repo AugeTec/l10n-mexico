@@ -755,7 +755,7 @@ class ConceptoImpuestos(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_retenciones = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi.4_0.concepto_retenciones",
         string="Retenciones",
         help=(
             "Nodo opcional para asentar los impuestos retenidos aplicables al "
@@ -848,12 +848,12 @@ class Traslado(models.AbstractModel):
     )
 
 
-class Retenciones(models.AbstractModel):
+class ConceptoRetenciones(models.AbstractModel):
     """Nodo opcional para asentar los impuestos retenidos aplicables al
     presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.retenciones"
+    _name = "l10n_mx_cfdi.4_0.concepto_retenciones"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones"
 
