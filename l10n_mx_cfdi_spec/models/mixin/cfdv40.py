@@ -567,8 +567,8 @@ class Concepto(models.AbstractModel):
         comodel_name="l10n_mx_cfdi.4_0.conceptos", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_impuestos = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.impuestos",
         string="Impuestos",
+        comodel_name="l10n_mx_cfdi.4_0.concepto_impuestos",
         help=(
             "Nodo condicional para capturar los impuestos aplicables al "
             "presente concepto."
@@ -736,12 +736,12 @@ class Concepto(models.AbstractModel):
     )
 
 
-class Impuestos(models.AbstractModel):
+class ConceptoImpuestos(models.AbstractModel):
     """Nodo condicional para capturar los impuestos aplicables al presente
     concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.impuestos"
+    _name = "l10n_mx_cfdi.4_0.concepto_impuestos"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos"
 
