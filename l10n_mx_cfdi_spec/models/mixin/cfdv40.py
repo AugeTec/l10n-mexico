@@ -858,7 +858,7 @@ class Retenciones(models.AbstractModel):
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones"
 
     l10n_mx_cfdi4_0_retencion = fields.One2many(
-        "l10n_mx_cfdi.4_0.retencion",
+        "l10n_mx_cfdi.4_0.concepto_retencion",
         "l10n_mx_cfdi4_0_retencion_retenciones_id",
         string="Retencion",
         help=(
@@ -868,12 +868,12 @@ class Retenciones(models.AbstractModel):
     )
 
 
-class Retencion(models.AbstractModel):
+class ConceptoRetencion(models.AbstractModel):
     """Nodo requerido para asentar la información detallada de una retención de
     impuestos aplicable al presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.retencion"
+    _name = "l10n_mx_cfdi.4_0.concepto_retencion"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones.Retencion"
 
