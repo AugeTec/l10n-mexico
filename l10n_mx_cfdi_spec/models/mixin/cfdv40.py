@@ -746,7 +746,7 @@ class ConceptoImpuestos(models.AbstractModel):
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos"
 
     l10n_mx_cfdi4_0_traslados = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.traslados",
+        comodel_name="l10n_mx_cfdi.4_0.concepto_traslados",
         string="Traslados",
         help=(
             "Nodo opcional para asentar los impuestos trasladados aplicables "
@@ -764,12 +764,12 @@ class ConceptoImpuestos(models.AbstractModel):
     )
 
 
-class Traslados(models.AbstractModel):
+class ConceptoTraslados(models.AbstractModel):
     """Nodo opcional para asentar los impuestos trasladados aplicables al
     presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.traslados"
+    _name = "l10n_mx_cfdi.4_0.concepto_traslados"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados"
 
