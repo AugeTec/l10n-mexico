@@ -11,12 +11,12 @@ __NAMESPACE__ = "http://www.sat.gob.mx/cfd/4"
 class Comprobante(models.AbstractModel):
     "Estándar de Comprobante Fiscal Digital por Internet."
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.comprobante"
+    _name = "l10n_mx_cfdi_spec.4_0.comprobante"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante"
 
     l10n_mx_cfdi4_0_informacion_global = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.informacionglobal",
+        comodel_name="l10n_mx_cfdi_spec.4_0.informacionglobal",
         string="InformacionGlobal",
         help=(
             "Nodo condicional para precisar la información relacionada con el "
@@ -25,7 +25,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_cfdi_relacionados = fields.One2many(
-        "l10n_mx_cfdi.4_0.cfdirelacionados",
+        "l10n_mx_cfdi_spec.4_0.cfdirelacionados",
         "l10n_mx_cfdi4_0_cfdi_relacionados_comprobante_id",
         string="CfdiRelacionados",
         help=(
@@ -35,7 +35,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_emisor = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.emisor",
+        comodel_name="l10n_mx_cfdi_spec.4_0.emisor",
         string="Emisor",
         xsd_required=True,
         help=(
@@ -45,7 +45,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_receptor = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.receptor",
+        comodel_name="l10n_mx_cfdi_spec.4_0.receptor",
         string="Receptor",
         xsd_required=True,
         help=(
@@ -55,7 +55,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_conceptos = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.conceptos",
+        comodel_name="l10n_mx_cfdi_spec.4_0.conceptos",
         string="Conceptos",
         xsd_required=True,
         help=(
@@ -64,7 +64,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_impuestos = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.impuestos",
+        comodel_name="l10n_mx_cfdi_spec.4_0.impuestos",
         string="Impuestos",
         help=(
             "Nodo condicional para expresar el resumen de los impuestos " "aplicables."
@@ -72,7 +72,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_complemento = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.complemento",
+        comodel_name="l10n_mx_cfdi_spec.4_0.complemento",
         string="Complemento",
         help=(
             "Nodo opcional donde se incluye el complemento Timbre Fiscal "
@@ -83,7 +83,7 @@ class Comprobante(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_addenda = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.addenda",
+        comodel_name="l10n_mx_cfdi_spec.4_0.addenda",
         string="Addenda",
         help=(
             "Nodo opcional para recibir las extensiones al presente formato "
@@ -308,7 +308,7 @@ class InformacionGlobal(models.AbstractModel):
     comprobante global."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.informacionglobal"
+    _name = "l10n_mx_cfdi_spec.4_0.informacionglobal"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.InformacionGlobal"
 
@@ -338,17 +338,17 @@ class CfdiRelacionados(models.AbstractModel):
     relacionados."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.cfdirelacionados"
+    _name = "l10n_mx_cfdi_spec.4_0.cfdirelacionados"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.CfdiRelacionados"
 
     l10n_mx_cfdi4_0_cfdi_relacionados_comprobante_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.comprobante",
+        comodel_name="l10n_mx_cfdi_spec.4_0.comprobante",
         xsd_implicit=True,
         ondelete="cascade",
     )
     l10n_mx_cfdi4_0_cfdi_relacionado = fields.One2many(
-        "l10n_mx_cfdi.4_0.cfdirelacionado",
+        "l10n_mx_cfdi_spec.4_0.cfdirelacionado",
         "l10n_mx_cfdi4_0_cfdi_relacionado_cfdi_relacionados_id",
         string="CfdiRelacionado",
         help=(
@@ -373,12 +373,12 @@ class CfdiRelacionado(models.AbstractModel):
     relacionados."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.cfdirelacionado"
+    _name = "l10n_mx_cfdi_spec.4_0.cfdirelacionado"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.CfdiRelacionados.CfdiRelacionado"
 
     l10n_mx_cfdi4_0_cfdi_relacionado_cfdi_relacionados_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.cfdirelacionados",
+        comodel_name="l10n_mx_cfdi_spec.4_0.cfdirelacionados",
         xsd_implicit=True,
         ondelete="cascade",
     )
@@ -403,7 +403,7 @@ class Emisor(models.AbstractModel):
     comprobante."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.emisor"
+    _name = "l10n_mx_cfdi_spec.4_0.emisor"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Emisor"
 
@@ -454,7 +454,7 @@ class Receptor(models.AbstractModel):
     del comprobante."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.receptor"
+    _name = "l10n_mx_cfdi_spec.4_0.receptor"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Receptor"
 
@@ -539,12 +539,12 @@ class Conceptos(models.AbstractModel):
     comprobante."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.conceptos"
+    _name = "l10n_mx_cfdi_spec.4_0.conceptos"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos"
 
     l10n_mx_cfdi4_0_concepto = fields.One2many(
-        "l10n_mx_cfdi.4_0.concepto",
+        "l10n_mx_cfdi_spec.4_0.concepto",
         "l10n_mx_cfdi4_0_concepto_conceptos_id",
         string="Concepto",
         help=(
@@ -559,16 +559,16 @@ class Concepto(models.AbstractModel):
     servicio amparado en el comprobante."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto"
 
     l10n_mx_cfdi4_0_concepto_conceptos_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.conceptos", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.conceptos", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_impuestos = fields.Many2one(
         string="Impuestos",
-        comodel_name="l10n_mx_cfdi.4_0.concepto_impuestos",
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto_impuestos",
         help=(
             "Nodo condicional para capturar los impuestos aplicables al "
             "presente concepto."
@@ -576,7 +576,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_acuenta_terceros = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.acuentaterceros",
+        comodel_name="l10n_mx_cfdi_spec.4_0.acuentaterceros",
         string="ACuentaTerceros",
         help=(
             "Nodo opcional para registrar información del contribuyente "
@@ -585,7 +585,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_informacion_aduanera = fields.One2many(
-        "l10n_mx_cfdi.4_0.concepto_informacionaduanera",
+        "l10n_mx_cfdi_spec.4_0.concepto_informacionaduanera",
         "l10n_mx_cfdi4_0_informacion_aduanera_concepto_id",
         string="InformacionAduanera",
         help=(
@@ -597,7 +597,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_cuenta_predial = fields.One2many(
-        "l10n_mx_cfdi.4_0.cuentapredial",
+        "l10n_mx_cfdi_spec.4_0.cuentapredial",
         "l10n_mx_cfdi4_0_cuenta_predial_concepto_id",
         string="CuentaPredial",
         help=(
@@ -610,7 +610,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_complemento_concepto = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.complementoconcepto",
+        comodel_name="l10n_mx_cfdi_spec.4_0.complementoconcepto",
         string="ComplementoConcepto",
         help=(
             "Nodo opcional donde se incluyen los nodos complementarios de "
@@ -620,7 +620,7 @@ class Concepto(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_parte = fields.One2many(
-        "l10n_mx_cfdi.4_0.parte",
+        "l10n_mx_cfdi_spec.4_0.parte",
         "l10n_mx_cfdi4_0_parte_concepto_id",
         string="Parte",
         help=(
@@ -741,12 +741,12 @@ class ConceptoImpuestos(models.AbstractModel):
     concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_impuestos"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_impuestos"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos"
 
     l10n_mx_cfdi4_0_traslados = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto_traslados",
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto_traslados",
         string="Traslados",
         help=(
             "Nodo opcional para asentar los impuestos trasladados aplicables "
@@ -755,7 +755,7 @@ class ConceptoImpuestos(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_retenciones = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto_retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto_retenciones",
         string="Retenciones",
         help=(
             "Nodo opcional para asentar los impuestos retenidos aplicables al "
@@ -769,12 +769,12 @@ class ConceptoTraslados(models.AbstractModel):
     presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_traslados"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_traslados"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados"
 
     l10n_mx_cfdi4_0_traslado = fields.One2many(
-        "l10n_mx_cfdi.4_0.concepto_traslado",
+        "l10n_mx_cfdi_spec.4_0.concepto_traslado",
         "l10n_mx_cfdi4_0_traslado_traslados_id",
         string="Traslado",
         help=(
@@ -789,12 +789,12 @@ class ConceptoTraslado(models.AbstractModel):
     impuestos aplicable al presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_traslado"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_traslado"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Traslados.Traslado"
 
     l10n_mx_cfdi4_0_traslado_traslados_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.traslados", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto_traslados", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_base = fields.Float(
         string="Base",
@@ -853,12 +853,12 @@ class ConceptoRetenciones(models.AbstractModel):
     presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_retenciones"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_retenciones"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones"
 
     l10n_mx_cfdi4_0_retencion = fields.One2many(
-        "l10n_mx_cfdi.4_0.concepto_retencion",
+        "l10n_mx_cfdi_spec.4_0.concepto_retencion",
         "l10n_mx_cfdi4_0_retencion_retenciones_id",
         string="Retencion",
         help=(
@@ -873,17 +873,17 @@ class ConceptoRetencion(models.AbstractModel):
     impuestos aplicable al presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_retencion"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_retencion"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Impuestos.Retenciones.Retencion"
 
     l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
     l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
@@ -943,7 +943,7 @@ class AcuentaTerceros(models.AbstractModel):
     cuenta del que se realiza la operación."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.acuentaterceros"
+    _name = "l10n_mx_cfdi_spec.4_0.acuentaterceros"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.AcuentaTerceros"
 
@@ -994,15 +994,15 @@ class ConceptoInformacionAduanera(models.AbstractModel):
     de operaciones de comercio exterior con bienes o servicios."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.concepto_informacionaduanera"
+    _name = "l10n_mx_cfdi_spec.4_0.concepto_informacionaduanera"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.InformacionAduanera"
 
     l10n_mx_cfdi4_0_informacion_aduanera_concepto_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_informacion_aduanera_parte_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.parte", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.parte", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_numero_pedimento = fields.Char(
         string="NumeroPedimento",
@@ -1030,12 +1030,12 @@ class CuentaPredial(models.AbstractModel):
     amortizable."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.cuentapredial"
+    _name = "l10n_mx_cfdi_spec.4_0.cuentapredial"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.CuentaPredial"
 
     l10n_mx_cfdi4_0_cuenta_predial_concepto_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_numero = fields.Char(
         string="Numero",
@@ -1056,7 +1056,7 @@ class ComplementoConcepto(models.AbstractModel):
     particulares para un sector o actividad específica."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.complementoconcepto"
+    _name = "l10n_mx_cfdi_spec.4_0.complementoconcepto"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.ComplementoConcepto"
 
@@ -1067,15 +1067,15 @@ class Parte(models.AbstractModel):
     Internet."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.parte"
+    _name = "l10n_mx_cfdi_spec.4_0.parte"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Parte"
 
     l10n_mx_cfdi4_0_parte_concepto_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_informacion_aduanera = fields.One2many(
-        "l10n_mx_cfdi.4_0.informacionaduanera",
+        "l10n_mx_cfdi_spec.4_0.informacionaduanera",
         "l10n_mx_cfdi4_0_informacion_aduanera_parte_id",
         string="InformacionAduanera",
         help=(
@@ -1161,15 +1161,15 @@ class Parte(models.AbstractModel):
 
 class InformacionAduanera(models.AbstractModel):
     _description = "InformacionAduanera"
-    _name = "l10n_mx_cfdi.4_0.informacionaduanera"
+    _name = "l10n_mx_cfdi_spec.4_0.informacionaduanera"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Conceptos.Concepto.Parte.InformacionAduanera"
 
     l10n_mx_cfdi4_0_informacion_aduanera_concepto_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.concepto", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.concepto", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_informacion_aduanera_parte_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.parte", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.parte", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_numero_pedimento = fields.Char(
         string="NumeroPedimento",
@@ -1194,12 +1194,12 @@ class Impuestos(models.AbstractModel):
     concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.impuestos"
+    _name = "l10n_mx_cfdi_spec.4_0.impuestos"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos"
 
     l10n_mx_cfdi4_0_retenciones = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.retenciones",
         string="Retenciones",
         help=(
             "Nodo condicional para capturar los impuestos retenidos "
@@ -1209,7 +1209,7 @@ class Impuestos(models.AbstractModel):
     )
 
     l10n_mx_cfdi4_0_traslados = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.traslados",
+        comodel_name="l10n_mx_cfdi_spec.4_0.traslados",
         string="Traslados",
         help=(
             "Nodo condicional para capturar los impuestos trasladados "
@@ -1248,12 +1248,12 @@ class Retenciones(models.AbstractModel):
     presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.retenciones"
+    _name = "l10n_mx_cfdi_spec.4_0.retenciones"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Retenciones"
 
     l10n_mx_cfdi4_0_retencion = fields.One2many(
-        "l10n_mx_cfdi.4_0.retencion",
+        "l10n_mx_cfdi_spec.4_0.retencion",
         "l10n_mx_cfdi4_0_retencion_retenciones_id",
         string="Retencion",
         help=(
@@ -1268,17 +1268,17 @@ class Retencion(models.AbstractModel):
     impuestos aplicable al presente concepto."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.retencion"
+    _name = "l10n_mx_cfdi_spec.4_0.retencion"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Retenciones.Retencion"
 
     l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
     l10n_mx_cfdi4_0_retencion_retenciones_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.retenciones",
+        comodel_name="l10n_mx_cfdi_spec.4_0.retenciones",
         xsd_implicit=True,
         ondelete="cascade",
     )
@@ -1304,12 +1304,12 @@ class Retencion(models.AbstractModel):
 
 class Traslados(models.AbstractModel):
     _description = "Traslados"
-    _name = "l10n_mx_cfdi.4_0.traslados"
+    _name = "l10n_mx_cfdi_spec.4_0.traslados"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Traslados"
 
     l10n_mx_cfdi4_0_traslado = fields.One2many(
-        "l10n_mx_cfdi.4_0.traslado",
+        "l10n_mx_cfdi_spec.4_0.traslado",
         "l10n_mx_cfdi4_0_traslado_traslados_id",
         string="Traslado",
         help=(
@@ -1321,12 +1321,12 @@ class Traslados(models.AbstractModel):
 
 class Traslado(models.AbstractModel):
     _description = "Traslado"
-    _name = "l10n_mx_cfdi.4_0.traslado"
+    _name = "l10n_mx_cfdi_spec.4_0.traslado"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Impuestos.Traslados.Traslado"
 
     l10n_mx_cfdi4_0_traslado_traslados_id = fields.Many2one(
-        comodel_name="l10n_mx_cfdi.4_0.traslados", xsd_implicit=True, ondelete="cascade"
+        comodel_name="l10n_mx_cfdi_spec.4_0.traslados", xsd_implicit=True, ondelete="cascade"
     )
     l10n_mx_cfdi4_0_base = fields.Char(
         string="Base",
@@ -1385,7 +1385,7 @@ class Complemento(models.AbstractModel):
     actividad específica."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.complemento"
+    _name = "l10n_mx_cfdi_spec.4_0.complemento"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Complemento"
 
@@ -1396,6 +1396,6 @@ class Addenda(models.AbstractModel):
     referirse al formato origen."""
 
     _description = textwrap.dedent("    %s" % (__doc__,))
-    _name = "l10n_mx_cfdi.4_0.addenda"
+    _name = "l10n_mx_cfdi_spec.4_0.addenda"
     _inherit = "spec.mixin.l10n_mx_cfdi"
     _binding_type = "Comprobante.Addenda"
