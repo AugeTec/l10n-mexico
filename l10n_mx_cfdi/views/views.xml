@@ -1,33 +1,88 @@
 <odoo>
     <data>
         <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="l10n_mx_cfdi.document_tree_view">
+            <field name="name">CFDI Documents</field>
+            <field name="model">l10n_mx_cfdi.document_4_0</field>
+            <field name="arch" type="xml">
+                <tree string="CFDI Documents">
+                    <field name="name"/>
+                    <field name="l10n_mx_cfdi4_0_fecha"/>
+                    <field name="l10n_mx_cfdi4_0_emisor"/>
+                    <field name="l10n_mx_cfdi4_0_receptor"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- explicit form view definition -->
+        <record model="ir.ui.view" id="l10n_mx_cfdi.document_form_view">
+            <field name="name">CFDI Document</field>
+            <field name="model">l10n_mx_cfdi.document_4_0</field>
+            <field name="arch" type="xml">
+                <form string="CFDI Document">
+                    <header>
+                        <button name="action_post" string="Post" type="object" class="btn btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'post')]}"/>
+                        <button name="action_draft" string="Draft" type="object" class="btn btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="l10n_mx_cfdi4_0_tipo_de_comprobante"/>
+                                <field name="l10n_mx_cfdi4_0_serie"/>
+                                <field name="l10n_mx_cfdi4_0_folio"/>
+                                <field name="l10n_mx_cfdi4_0_lugar_expedicion" widget="date"/>
+                                <field name="l10n_mx_cfdi4_0_fecha" widget="date"/>
+                            </group>
+                            <group>
+                                <field name="l10n_mx_cfdi4_0_informacion_global"/>
+                                <field name="l10n_mx_cfdi4_0_emisor"/>
+                                <field name="l10n_mx_cfdi4_0_receptor"/>
+
+                            </group>
+                        </group>
+                        <group attrs="{'invisible': [('l10n_mx_cfdi4_0_tipo_de_comprobante', '!=', 'I')]}"
+                               string="Invoice">
+                            <group>
+                                <field name="l10n_mx_cfdi4_0_moneda"/>
+                                <field name="l10n_mx_cfdi4_0_tipo_cambio"/>
+                                <field name="l10n_mx_cfdi4_0_forma_pago"/>
+                                <field name="l10n_mx_cfdi4_0_metodo_pago"/>
+                                <field name="l10n_mx_cfdi4_0_condiciones_de_pago"/>
+                            </group>
+                            <group>
+                                <field name="l10n_mx_cfdi4_0_sub_total"/>
+                                <field name="l10n_mx_cfdi4_0_descuento"/>
+                                <field name="l10n_mx_cfdi4_0_total"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="l10n_mx_cfdi4_0_conceptos"/>
+                            <field name="l10n_mx_cfdi4_0_impuestos"/>
+                            <field name="l10n_mx_cfdi4_0_cfdi_relacionados">
+                                <tree>
+                                    <field name="l10n_mx_cfdi4_0_cfdi_relacionado"/>
+                                    <field name="l10n_mx_cfdi4_0_tipo_relacion"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
         <!-- actions opening views on models -->
-        <!--
-            <record model="ir.actions.act_window" id="l10n_mx_cfdi.action_window">
-              <field name="name">l10n_mx_cfdi window</field>
-              <field name="res_model">l10n_mx_cfdi.l10n_mx_cfdi</field>
-              <field name="view_mode">tree,form</field>
-            </record>
-        -->
         <record model="ir.actions.act_window" id="l10n_mx_cfdi.document_action">
             <field name="name">CFDI Documents</field>
             <field name="res_model">l10n_mx_cfdi.document_4_0</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-        <!-- Menu items -->
-        <menuitem id="l10n_mx_cfdi.menu_l10n_mx_cfdi"
-                  name="CFDI"
-                  parent="account.menu_finance_entries"
-                  sequence="10"/>
-
-        <!-- actions -->
-        <menuitem id="l10n_mx_cfdi.menu_l10n_mx_cfdi_document"
-                  name="Documents"
-                  parent="l10n_mx_cfdi.menu_l10n_mx_cfdi"
-                  action="l10n_mx_cfdi.document_action"
-                  sequence="10"/>
-
     </data>
 </odoo>
