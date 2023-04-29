@@ -1,4 +1,13 @@
+import json
 import logging
+
+from xsdata.formats.dataclass.serializers import XmlSerializer
+from xsdata.formats.dataclass.serializers.config import SerializerConfig
+from odoo.addons.l10n_mx_cfdi_spec.models.lib import (
+    Comprobante,
+    CFDI_4_0_SCHEMA_LOCATION,
+    CFDI_4_0_NAMESPACES,
+)
 
 from odoo import fields
 
@@ -82,9 +91,30 @@ class XSDataClassImporter:
                 return [fields.Command.set(new_records.ids)]
 
         if odoo_field.type == "char":
-            return str(field_value)
+            if isinstance(field_value, str):
+                return field_value
+
+            return self._serialize_any_type(field_value)
 
         if odoo_field.type == "float":
             return float(field_value)
 
         return None
+
+    def _serialize_any_type(self, field_value):
+
+        # create xml from Comprobante class using  XmlSerializer
+        serializer_config = SerializerConfig(
+            schema_location=CFDI_4_0_SCHEMA_LOCATION,
+            xml_declaration=False,
+        )
+        serializer = XmlSerializer(config=serializer_config)
+        if isinstance(field_value, list):
+            entries = []
+            for entry in field_value:
+                entry_xml = serializer.render(entry, ns_map=CFDI_4_0_NAMESPACES)
+                entries.append(entry_xml)
+            return json.dumps(entries)
+
+        entry_xml = serializer.render(field_value, ns_map=CFDI_4_0_NAMESPACES)
+        return json.dumps(entry_xml)

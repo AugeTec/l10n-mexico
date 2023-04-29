@@ -20,6 +20,9 @@
     "data": [
         "security/access_groups.xml",
         "security/ir.model.access.csv",
+
         "views/views.xml",
+
+        "wizards/cfdi_document_import_wizard_views.xml",
     ],
 }

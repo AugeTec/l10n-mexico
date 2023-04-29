@@ -37,7 +37,7 @@
                                 <field name="l10n_mx_cfdi4_0_tipo_de_comprobante"/>
                                 <field name="l10n_mx_cfdi4_0_serie"/>
                                 <field name="l10n_mx_cfdi4_0_folio"/>
-                                <field name="l10n_mx_cfdi4_0_lugar_expedicion" widget="date"/>
+                                <field name="l10n_mx_cfdi4_0_lugar_expedicion"/>
                                 <field name="l10n_mx_cfdi4_0_fecha" widget="date"/>
                             </group>
                             <group>
@@ -66,6 +66,8 @@
                         <group>
                             <field name="l10n_mx_cfdi4_0_conceptos"/>
                             <field name="l10n_mx_cfdi4_0_impuestos"/>
+                            <field name="l10n_mx_cfdi4_0_complemento"/>
+                            <field name="l10n_mx_cfdi4_0_addenda"/>
                             <field name="l10n_mx_cfdi4_0_cfdi_relacionados">
                                 <tree>
                                     <field name="l10n_mx_cfdi4_0_cfdi_relacionado"/>

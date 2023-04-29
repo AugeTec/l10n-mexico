@@ -61,3 +61,6 @@ class CFDI_4_0(models.Model):
 
     def action_draft(self):
         pass
+
+    def action_check_status(self):
+        pass
