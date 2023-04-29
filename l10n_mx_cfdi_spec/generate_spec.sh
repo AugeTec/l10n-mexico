@@ -42,7 +42,14 @@ export XSDATA_SCHEMA="l10n_mx_cfdi"
 export XSDATA_VERSION="4_0"
 export XSDATA_LANG=spanish
 xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -c './xsdata.xml' -p models.lib
-xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -c './xsdata.xml' -p models.mixin --output=odoo
+
+###
+# xsdata-odoo was used to generate the spec file but the result was not good enough
+# so we had to manually edit the spec file to fix some issues. Hopefully in the future
+# we can use xsdata-odoo to generate the spec file.
+###
+
+# xsdata generate "$SCHEMAS_DIR/4/cfdv40.xsd" -c './xsdata.xml' -p models.mixin --output=odoo
 
 ## Add schema location and namespace map to package lib/__init__.py
 cat <<EOF >>models/lib/__init__.py
@@ -54,4 +61,3 @@ CFDI_4_0_NAMESPACES = {
     'xsi': 'http://www.w3.org/2001/XMLSchema-instance'
 }
 EOF
-

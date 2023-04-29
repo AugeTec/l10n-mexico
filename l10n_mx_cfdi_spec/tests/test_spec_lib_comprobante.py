@@ -1,18 +1,21 @@
 import decimal
 import os
 
-from lxml import etree
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
-
-from odoo.tests import tagged, TransactionCase
-from odoo.addons.l10n_mx_cfdi_spec.models.lib import Comprobante, CFDI_4_0_SCHEMA_LOCATION, CFDI_4_0_NAMESPACES
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.serializers import XmlSerializer
 
-from odoo.tools import float_compare
+from odoo.tests import tagged, TransactionCase
+from odoo.addons.l10n_mx_cfdi_spec.models.lib import (
+    Comprobante,
+    CFDI_4_0_SCHEMA_LOCATION,
+    CFDI_4_0_NAMESPACES,
+)
+
+from .utils import assert_equal_xml
 
 
-@tagged('-standard', 'l10n_mx_cfdi_spec')
+@tagged("-standard", "l10n_mx_cfdi_spec")
 class TestComprobanteClass(TransactionCase):
     """
     Test importing and exporting CFDI XML files into Comprobante class
@@ -20,12 +23,14 @@ class TestComprobanteClass(TransactionCase):
 
     def setUp(self):
         # resolve xml file path
-        data_dir_path = os.path.join(os.path.dirname(__file__), '..', 'data')
-        self.cfdi_invoice_4_0_xml_path = os.path.join(data_dir_path, 'cfdi_4_0_invoice.xml')
-        self.cfdi_schema_path = os.path.join(data_dir_path, 'schemas/4/cfdv40.xsd')
+        data_dir_path = os.path.join(os.path.dirname(__file__), "..", "data")
+        self.cfdi_invoice_4_0_xml_path = os.path.join(
+            data_dir_path, "cfdi_4_0_invoice.xml"
+        )
+        self.cfdi_schema_path = os.path.join(data_dir_path, "schemas/4/cfdv40.xsd")
         self.assertTrue(os.path.exists(self.cfdi_invoice_4_0_xml_path))
 
-        self.cfdi_invoice_4_0_data = open(self.cfdi_invoice_4_0_xml_path, 'rb').read()
+        self.cfdi_invoice_4_0_data = open(self.cfdi_invoice_4_0_xml_path, "rb").read()
 
     def test_import_export_xml(self):
         """
@@ -86,10 +91,7 @@ class TestComprobanteClass(TransactionCase):
         self.assertEqual(impuesto_traslado.base, 1)
         self.assertEqual(impuesto_traslado.impuesto, "002")
         self.assertEqual(impuesto_traslado.tipo_factor, "Tasa")
-        self.assertEqual(
-            impuesto_traslado.tasa_ocuota,
-            decimal.Decimal("0.160000")
-        )
+        self.assertEqual(impuesto_traslado.tasa_ocuota, decimal.Decimal("0.160000"))
         self.assertEqual(impuesto_traslado.importe, "0.16")
 
         # create xml from Comprobante class using  XmlSerializer
@@ -99,47 +101,4 @@ class TestComprobanteClass(TransactionCase):
         serializer = XmlSerializer(config=serializer_config)
         xml_data = serializer.render(invoice_cfdi, ns_map=CFDI_4_0_NAMESPACES)
 
-        self.assert_equal_xml_trees(xml_data.encode('utf-8'),
-                                    self.cfdi_invoice_4_0_data)
-
-    @staticmethod
-    def assert_equal_xml_trees(xml1_data: bytes, xml2_data: bytes):
-        """
-        Assert that two xml trees are equal by comparing their nodes
-        and attributes
-        """
-        xml1 = etree.fromstring(xml1_data)
-        xml2 = etree.fromstring(xml2_data)
-
-        def compare_nodes(node1, node2):
-            """
-            Compare two nodes by tag name, attributes and children nodes
-            """
-            if node1.tag != node2.tag:
-                raise AssertionError(
-                    f"Node tags {node1.tag} and {node2.tag} are not equal"
-                )
-
-            if node1.attrib != node2.attrib:
-                raise AssertionError(
-                    f"Node attributes {node1.attrib} and {node2.attrib} "
-                    f"are not equal"
-                )
-
-            node_1_test = node1.text or ""
-            node_2_test = node2.text or ""
-            if node_1_test.strip() != node_2_test.strip():
-                raise AssertionError(
-                    f"Node text {node1.text} and {node2.text} are not equal"
-                )
-
-            if len(node1) != len(node2):
-                raise AssertionError(
-                    f"Node {etree.tostring(node1)} has {len(node1)} children "
-                    f"and node {etree.tostring(node2)} has {len(node2)} children"
-                )
-
-            for child1, child2 in zip(node1, node2):
-                compare_nodes(child1, child2)
-
-        compare_nodes(xml1, xml2)
+        assert_equal_xml(self, xml_data.encode("utf-8"), self.cfdi_invoice_4_0_data)
