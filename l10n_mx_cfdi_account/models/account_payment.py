@@ -39,26 +39,14 @@ class AccountPayment(models.Model):
 
     @api.depends("related_cert_ids")
     def _compute_cfdi_document_id(self):
+        # payment.move_id.move_type is always "entry" (see account_payment.py
+        # in core Odoo), so the only reachable related_cert_ids type is "P".
+        # addons/account/models/account_move.py:143-152
+        # addons/account/models/account_payment.py:1086
         for payment in self:
-            # remove current reference
-            move = payment.move_id
-            move.cfdi_document_id = False
-
-            # get the last CFDI
-            if move.move_type in ("in_invoice", "out_invoice"):
-                move.cfdi_document_id = move.related_cert_ids.filtered(
-                    lambda x: x.type == "I" and x.state == "published"
-                )
-
-            if move.move_type == "out_refund":
-                move.cfdi_document_id = move.related_cert_ids.filtered(
-                    lambda x: x.type == "E" and x.state == "published"
-                )
-
-            if move.move_type == "in_payment":
-                move.cfdi_document_id = move.related_cert_ids.filtered(
-                    lambda x: x.type == "P" and x.state == "published"
-                )
+            payment.cfdi_document_id = payment.related_cert_ids.filtered(
+                lambda x: x.type == "P" and x.state == "published"
+            )
 
     def action_generate_cfdi(self):
         self.ensure_one()
