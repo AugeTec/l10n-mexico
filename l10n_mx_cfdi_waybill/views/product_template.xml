@@ -7,8 +7,9 @@
             <xpath expr="//page[@name='CFDI']" position="inside">
                 <group>
                     <group string="Waybill">
-                        <field name="l10n_mx_cfdi_dangerous_material_indicator"/>
                         <field name="l10n_mx_cfdi_dangerous_material_optional"/>
+                        <field name="l10n_mx_cfdi_dangerous_material_send"/>
+                        <field name="l10n_mx_cfdi_dangerous_material_indicator"/>
                         <field name="l10n_mx_cfid_dangerous_material_code"/>
                     </group>
                     <group string="Embalaje material peligroso"

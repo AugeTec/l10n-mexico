@@ -330,7 +330,7 @@ class Waybill(models.Model):
             data['CveMaterialPeligroso'] = hazard_code
             data['Embalaje'] = packaging
             data['DescripEmbalaje'] = packaging_desc
-        else:
+        elif product.l10n_mx_cfdi_dangerous_material_optional and product.l10n_mx_cfdi_dangerous_material_send:
             # Not hazardous or optional without info: send "No" and omit
             # CveMaterialPeligroso entirely.
             data['MaterialPeligroso'] = "No"
