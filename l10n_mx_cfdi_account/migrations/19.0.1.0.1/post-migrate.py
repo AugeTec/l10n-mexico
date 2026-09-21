@@ -1,23 +1,39 @@
+from collections import defaultdict
+
 from odoo import SUPERUSER_ID, api
 
 
 def migrate(cr, version):
-    """Backfill account.payment.related_cert_ids for payment CFDIs that only
-    kept the reverse link (l10n_mx_cfdi.document.related_payment_id) after
-    the pre-19.0 data migration, then recompute cfdi_document_id.
+    """Backfill account.payment.related_cert_ids for payment ("P") CFDIs and
+    recompute cfdi_document_id.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
 
-    orphan_docs = env["l10n_mx_cfdi.document"].search(
-        [
-            ("type", "=", "P"),
-            ("state", "=", "published"),
-            ("related_payment_id", "!=", False),
-        ]
+    cr.execute(
+        """
+        SELECT doc_id, array_agg(DISTINCT payment_id)
+        FROM (
+            SELECT d.id AS doc_id, d.related_payment_id AS payment_id
+            FROM l10n_mx_cfdi_document d
+            WHERE d.type = 'P' AND d.related_payment_id IS NOT NULL
+            UNION
+            SELECT d.id, ap.id
+            FROM l10n_mx_cfdi_document d
+            JOIN account_move_l10n_mx_cfdi_document_rel r
+                ON r.l10n_mx_cfdi_document_id = d.id
+            JOIN account_payment ap ON ap.move_id = r.account_move_id
+            WHERE d.type = 'P'
+        ) links
+        GROUP BY doc_id
+        """
     )
-    for doc in orphan_docs:
-        if doc not in doc.related_payment_id.related_cert_ids:
-            doc.related_payment_id.related_cert_ids |= doc
+    docs_by_payment = defaultdict(list)
+    for doc_id, payment_ids in cr.fetchall():
+        if len(payment_ids) == 1:
+            docs_by_payment[payment_ids[0]].append(doc_id)
+
+    for payment in env["account.payment"].browse(docs_by_payment.keys()):
+        payment.related_cert_ids = [(4, doc_id) for doc_id in docs_by_payment[payment.id]]
 
     payments = env["account.payment"].search([("related_cert_ids", "!=", False)])
     payments._compute_cfdi_document_id()
