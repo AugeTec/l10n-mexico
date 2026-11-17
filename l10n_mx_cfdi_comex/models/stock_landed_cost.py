@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright (C) 2024 Alexis López Zubieta (https://augetec.com).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
 from odoo import fields, models
 
@@ -18,11 +19,13 @@ class StockLandedCost(models.Model):
                 continue
 
             for picking in cost.picking_ids:
-                for line in picking.move_line_ids:
+                for line in picking.move_ids.move_line_ids:
                     if not line.lot_id:
                         continue
 
-                    line.lot_id.l10n_mx_cfdi_pedimento_id = cost.l10n_mx_cfdi_pedimento_id
+                    line.lot_id.l10n_mx_cfdi_pedimento_id = (
+                        cost.l10n_mx_cfdi_pedimento_id
+                    )
 
     def button_validate(self):
         res = super().button_validate()

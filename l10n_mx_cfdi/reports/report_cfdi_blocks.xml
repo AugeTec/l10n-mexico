@@ -1,5 +1,4 @@
 <odoo>
-
     <template id="cfdi_issuer_data">
         <h6>Emisor</h6>
         <spam t-field="cfdi.issuer_id.fiscal_name" />
@@ -28,10 +27,10 @@
         />
         <div t-if="company.partner_id.vat" class="mt16">
             <t
-                t-if="o.company_id.account_fiscal_country_id.vat_label"
-                t-esc="o.company_id.account_fiscal_country_id.vat_label"
-                id="inv_tax_id_label"
-            />
+            t-if="o.company_id.account_fiscal_country_id.vat_label"
+            t-esc="o.company_id.account_fiscal_country_id.vat_label"
+            id="inv_tax_id_label"
+        />
             <t t-else="">Tax ID</t>:
             <span t-field="company.partner_id.vat" />
         </div>
@@ -74,10 +73,10 @@
         />
         <div t-if="o and 'partner_id' in o and o.partner_id.vat" class="mt16">
             <t
-                t-if="o.company_id.account_fiscal_country_id.vat_label"
-                t-esc="o.company_id.account_fiscal_country_id.vat_label"
-                id="inv_tax_id_label"
-            />
+            t-if="o.company_id.account_fiscal_country_id.vat_label"
+            t-esc="o.company_id.account_fiscal_country_id.vat_label"
+            id="inv_tax_id_label"
+        />
             <t t-else="">Tax ID</t>:
             <span t-id="'partner_id' in o" t-field="o.partner_id.vat" />
         </div>
@@ -200,7 +199,6 @@
                 />
             </div>
             <div class="col-9 m-0 p-2">
-
                 <b
                     class="m-0 p-0 font-weight-bold"
                     style="font-size: 10px; line-height: 2;"
@@ -263,7 +261,5 @@
             </div>
         </t>
         <div class="mb-4" />
-
-        </template>
-
+    </template>
 </odoo>

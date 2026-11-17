@@ -33,7 +33,9 @@ def migrate(cr, version):
             docs_by_payment[payment_ids[0]].append(doc_id)
 
     for payment in env["account.payment"].browse(docs_by_payment.keys()):
-        payment.related_cert_ids = [(4, doc_id) for doc_id in docs_by_payment[payment.id]]
+        payment.related_cert_ids = [
+            (4, doc_id) for doc_id in docs_by_payment[payment.id]
+        ]
 
     payments = env["account.payment"].search([("related_cert_ids", "!=", False)])
     payments._compute_cfdi_document_id()

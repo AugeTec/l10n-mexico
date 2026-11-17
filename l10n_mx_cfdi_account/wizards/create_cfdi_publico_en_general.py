@@ -1,6 +1,8 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import datetime
+
+from odoo.addons.l10n_mx_cfdi.services import cfdi_builder
 
 
 class CFDIGenericInvoiceCreate(models.TransientModel):
@@ -64,7 +66,7 @@ class CFDIGenericInvoiceCreate(models.TransientModel):
         defaults_dict = super().default_get(field_names)
         context = self.env.context
 
-        if context["active_model"] == "account.move":
+        if context.get("active_model") == "account.move":
             related_invoice_objs = self.env["account.move"].browse(
                 context["active_ids"]
             )
@@ -97,14 +99,14 @@ class CFDIGenericInvoiceCreate(models.TransientModel):
         invoice.ensure_one()
 
         if invoice.state != "posted":
-            raise ValidationError(_("Invoice %s is not posted.") % invoice.name)
+            raise ValidationError(self.env._("Invoice %s is not posted.", invoice.name))
 
         related_cfdi = invoice.related_cert_ids.filtered_domain(
             [("state", "=", "published")]
         )
         if related_cfdi:
             raise ValidationError(
-                _("Invoice %s already has a published CFDI.") % invoice.name
+                self.env._("Invoice %s already has a published CFDI.", invoice.name)
             )
 
         err_msg = invoice.validate_invoice_items_for_cfdi_generation()
@@ -125,7 +127,7 @@ class CFDIGenericInvoiceCreate(models.TransientModel):
                 "receiver_id": receiver.id,
                 "is_global_note": True,
                 "serie": "IG",
-                "folio": self._compute_folio()
+                "folio": self._compute_folio(),
             }
         )
 
@@ -136,30 +138,32 @@ class CFDIGenericInvoiceCreate(models.TransientModel):
                 all_items_data.extend(items_data)
             currency = self.move_ids[0].currency_id
 
-            cfdi_data = {
-                "Currency": currency[0].name,
-                "ExpeditionPlace": self.issuer_id.zip,
-                "CfdiType": "I",
-                "Date": self.move_ids._format_cfdi_date_str(self.date),
-                "PaymentForm": self.payment_form_id.code,
-                "PaymentMethod": self.payment_method_id.code,
-                "GlobalInformation": {
-                    "Periodicity": self.periodicity_id.code,
-                    "Months": self.meses_id.code,
-                    "Year": self.year,
-                },
-                "Receiver": {
+            cfdi = cfdi_builder.build_comprobante(
+                issuer=self.issuer_id,
+                receiver={
                     "Name": receiver.name,
                     "Rfc": receiver.vat,
                     "CfdiUse": self.cfdi_use_id.code,
                     "FiscalRegime": receiver.tax_regime.code,
                     "TaxZipCode": self.issuer_id.zip,
                 },
-                "Items": all_items_data,
-            }
+                conceptos=all_items_data,
+                tipo_de_comprobante="I",
+                lugar_expedicion=self.issuer_id.zip,
+                moneda=currency[0].name,
+                serie=cert.serie,
+                folio=cert.folio,
+                forma_pago=self.payment_form_id.code,
+                metodo_pago=self.payment_method_id.code,
+                fecha=self.move_ids._format_cfdi_date_str(self.date),
+                informacion_global={
+                    "Periodicity": self.periodicity_id.code,
+                    "Months": self.meses_id.code,
+                    "Year": self.year,
+                },
+            )
 
-            cert.publish(cfdi_data)
-
+            cert.publish(cfdi)
             for invoice in self.move_ids:
                 invoice.related_cert_ids = [(4, cert.id)]
 

@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright (C) 2024 Alexis López Zubieta (https://augetec.com).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
 from odoo import fields, models
 

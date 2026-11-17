@@ -2,6 +2,12 @@ from odoo import fields, models
 
 
 class AccountMoveDocumentRelation(models.Model):
+    """Free-text CFDI relation on an invoice or credit note.
+
+    Complements ``account.move.cfdi_document_relations`` (Odoo CFDI records)
+    with UUIDs that may not exist in Odoo, each with its own SAT relation type.
+    """
+
     _name = "account.move.document.relation"
     _description = "Account Move Document Relation"
 

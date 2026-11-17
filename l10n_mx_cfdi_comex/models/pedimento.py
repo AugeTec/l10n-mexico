@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# Copyright (C) 2024 Alexis López Zubieta (https://augetec.com).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
 import re
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -41,13 +42,10 @@ class L10nMxCFDIPedimento(models.Model):
         string="Lotes",
     )
 
-    _sql_constraints = [
-        (
-            "number_unique",
-            "unique(number)",
-            "El número de pedimento ya existe.",
-        ),
-    ]
+    _number_unique = models.Constraint(
+        "UNIQUE(number)",
+        "El número de pedimento ya existe.",
+    )
 
     @api.depends("number", "customs_id", "date")
     def _compute_name(self):
@@ -72,7 +70,9 @@ class L10nMxCFDIPedimento(models.Model):
 
         for rec in self:
             if rec.number and not re.match(pattern, rec.number):
-                raise ValidationError(_(
-                    "¡Error! El formato del número de pedimento es incorrecto. "
-                    "El formato debe ser:15 48 3009 0001234."
-                ))
+                raise ValidationError(
+                    self.env._(
+                        "¡Error! El formato del número de pedimento es incorrecto. "
+                        "El formato debe ser:15 48 3009 0001234."
+                    )
+                )

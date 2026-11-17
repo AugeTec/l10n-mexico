@@ -1,0 +1,2 @@
+- Alexis López Zubieta \<<alexis.lopez@augetec.com>\>
+- Cristhiane Guadalupe Rangel Ferrusca \<<cristhiane.rangel@graymatterlogic.com>\>

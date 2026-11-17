@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-
 import csv
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -29,16 +28,20 @@ for tr in table_rows:
     if not code:
         continue
 
-    rows.append({
-        "id": f"c_aduana_{code}",
-        "code": code,
-        "name": name,
-        "city": city,
-        "state": state,
-        "active": "True",
-    })
+    rows.append(
+        {
+            "id": f"c_aduana_{code}",
+            "code": code,
+            "name": name,
+            "city": city,
+            "state": state,
+            "active": "True",
+        }
+    )
 
-with open("../data/l10n_mx_catalogs.c_aduana.csv", "w", newline="", encoding="utf-8") as f:
+with open(
+    "../data/l10n_mx_catalogs.c_aduana.csv", "w", newline="", encoding="utf-8"
+) as f:
     writer = csv.DictWriter(
         f,
         fieldnames=[

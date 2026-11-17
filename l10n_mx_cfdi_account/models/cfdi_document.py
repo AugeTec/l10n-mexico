@@ -2,9 +2,7 @@ import base64
 import logging
 import re
 
-import facturama
-
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -63,23 +61,27 @@ class Document(models.Model):
                         entry.pdf_file = res["Content"]
 
                     # set filename
-                    entry.pdf_filename = "%s.pdf" % entry.name
+                    entry.pdf_filename = f"{entry.name}.pdf"
 
                 if not entry.xml_file:
                     res = entry.issuer_id.service_id.sudo().get_cfdi_xml(
                         entry.tracking_id
                     )
-                    entry.xml_file = res["Content"].encode("utf-8")
-                    entry.xml_filename = "%s.xml" % entry.name
+                    content = res["Content"]
+                    if isinstance(content, str):
+                        content = content.encode("utf-8")
+                    entry.xml_file = base64.b64encode(content)
+                    entry.xml_filename = f"{entry.name}.xml"
 
                 entry.files_in_cache = True
-            except facturama.FacturamaError as e:
+            except UserError as exc:
+                # PAC unavailable or document unknown: keep the list usable
                 _logger.warning(
                     "Could not download CFDI files on demand for %s "
                     "(tracking_id=%s): %s",
                     entry.name,
                     entry.tracking_id,
-                    e,
+                    exc,
                 )
                 entry.files_in_cache = False
 
@@ -134,7 +136,7 @@ class Document(models.Model):
             document_name = payment.name
 
         if not document_name:
-            raise UserError(_("Unable to determine the origin document name."))
+            raise UserError(self.env._("Unable to determine the origin document name."))
 
         # extract numeric postfix from invoice name using regex
         match = re.search(r"\d+$", document_name)
@@ -142,7 +144,9 @@ class Document(models.Model):
             folio = match.group()
             serie = document_name[: -len(match.group())]
         else:
-            raise UserError(_("Invoice name does not contain a numeric postfix."))
+            raise UserError(
+                self.env._("Invoice name does not contain a numeric postfix.")
+            )
 
         # remove non-alphanumeric characters from serie
         serie = re.sub(r"\W+", "", serie)
@@ -167,3 +171,6 @@ class Document(models.Model):
 
         if self.state != status:
             self.state = status
+
+    def download_files_if_needed(self):
+        self._compute_download_files_if_needed()

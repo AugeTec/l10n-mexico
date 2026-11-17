@@ -1,5 +1,4 @@
 <odoo>
-
     <template id="report_payment_receipt_document_cfdi">
         <t t-call="web.external_layout">
             <t t-set="o" t-value="o.with_context(lang=lang)" />
@@ -30,7 +29,10 @@
                         <p class="m-0" t-field="o.date" />
                     </div>
 
-                    <div t-if="o.move_id.invoice_payment_term_id" class="col-auto col-3 mw-100">
+                    <div
+                        t-if="o.move_id.invoice_payment_term_id"
+                        class="col-auto col-3 mw-100"
+                    >
                         <strong>Plazo de Pago:</strong>
                         <p name="payment_term">
                             <span t-field="o.invoice_payment_term_id.name" />
@@ -130,5 +132,4 @@
             />
         </t>
     </template>
-
 </odoo>
